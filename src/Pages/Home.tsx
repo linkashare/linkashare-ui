@@ -15,6 +15,7 @@ const Home = () => {
       <div className="flex justify-center items-center h-screen flex-col">
         <div className='font-gotham text-primary text-9xl md:lg sm:md'>Linkashare</div>
         <p>timi gbetrabaye from here</p>
+        <Link to='/login'>Login</Link>
       </div>
     </main>
 </Fragment>
