@@ -17,9 +17,7 @@ const Login = () => {
         e.preventDefault()
         console.log(state);
       
-        axios('https://link-a-share.herokuapp.com/login.php',{
-            
-        })
+        axios.post('https://link-a-share.herokuapp.com/login.php',state)
         .then(res=>{
           console.log(res)
         })
