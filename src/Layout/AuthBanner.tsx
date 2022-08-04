@@ -7,7 +7,7 @@ import {FaEnvelope, FaLock, FaUser} from 'react-icons/all';
 const AuthBanner = () => {
   return (
     <Fragment>
-    <div className=" w-1/2 flex items-center">
+    <div className=" md:w-1/2 flex items-center">
         <p className='absolute top-0 text-xs p-4'>
       <span className="opacity-80"> Have an account ?</span> <Link to='/signin' className='text-primary transition-all underline hover:decoration-double'>Sign in</Link>
         </p>
@@ -38,7 +38,11 @@ const AuthBanner = () => {
 
 
     </div>
-       <div className="bg-primary w-1/2 min-h-full"></div>
+       <div className="bg-primary hidden md:block w-1/2 min-h-full">
+         <div className=''>
+           <h2>Make a Short Link.</h2>
+         </div>
+       </div>
     </Fragment>
   )
 }
