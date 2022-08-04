@@ -1,12 +1,9 @@
-
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
 /* DO NOT TOUCH THIS */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: gotham;
+  src: url(../Assets/font/GothamRounded-Bold.ttf);
+}

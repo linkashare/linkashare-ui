@@ -100,6 +100,14 @@ To get a local copy up and running follow these simple steps.
    ```sh
    yarn install
    ```
+3. Run The Project
+   ```sh
+   yarn run dev
+   ```
+4. Build the project
+   ```sh
+   yarn run build
+   ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -110,6 +118,7 @@ To get a local copy up and running follow these simple steps.
 
 - [x] Add README
 - [x] Add back to top links
+- [x] Added the navbar
 - [ ] Change Licence to MIT
 - [ ] Add Linting Support
 - [ ] Create 404 Page
