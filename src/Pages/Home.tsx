@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
-import logo from '../Assets/logo.svg'
 import {Helmet} from 'react-helmet';
+import Navbar from "../Components/Navbar"
 
 const Home = () => {
   return (
@@ -8,11 +8,14 @@ const Home = () => {
   <Helmet>
     <title>Link-A-share | Home</title>
   </Helmet>
-<main id="home">
-        <div className="h-screen bg-dark w-screen flex justify-center">
-        <img src={logo} alt="ReactLogo" className='transition-colors cursor-pointer w-1/3 logo react'/>
-        <img src={'/vite.svg'} alt="Logo" className='transition-colors cursor-pointer w-1/3 logo'/>
-        </div>
+    <main id="home" className=''>
+      <header>
+        <Navbar />
+      </header>
+      <div className="flex justify-center items-center h-screen flex-col">
+        <div className='font-gotham text-primary text-9xl md:lg sm:md'>Linkashare</div>
+        <p>timi gbetrabaye from here</p>
+      </div>
     </main>
 </Fragment>
   )
