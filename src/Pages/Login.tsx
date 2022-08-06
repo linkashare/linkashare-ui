@@ -6,10 +6,7 @@ import Input from '../Components/Input';
 import AuthBanner from '../Layout/AuthBanner';
 
 const Login = () => {
-    const [state, setState] = useState({
-    email:'',
-    password:''
-  })
+c
   return (
     <main className="min-h-screen flex">
     <AuthBanner>
