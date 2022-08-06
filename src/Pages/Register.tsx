@@ -19,7 +19,7 @@ const Register = () => {
   return (
     <main className="min-h-screen flex bg-dark text-white">
     <AuthBanner>
-      <form className="" onSubmit={(e)=>{
+      <form className="" autoComplete="false" onSubmit={(e)=>{
         e.preventDefault()
         console.log(state);
       
