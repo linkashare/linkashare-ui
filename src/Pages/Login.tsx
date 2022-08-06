@@ -1,11 +1,9 @@
-import axios from 'axios';
+import Axios from '../Config/axios';
 import React, { useState } from 'react'
 import { FaUser, FaEnvelope, FaLock } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import Input from '../Components/Input';
 import AuthBanner from '../Layout/AuthBanner';
-
-
 
 
 const Login = () => {
@@ -20,7 +18,7 @@ const Login = () => {
         e.preventDefault()
         console.log(state);
       
-        axios.post('https://linkashapii.herokuapp.com/login.php',state)
+        Axios.post('/login.php',state)
         .then(res=>{
           console.log(res)
         })
