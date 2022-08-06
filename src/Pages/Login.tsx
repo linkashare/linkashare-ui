@@ -76,7 +76,7 @@ const Login = () => {
               <div className="">
                 Please Wait ...
               </div>
-            ): 'Create an Account'}
+            ): 'Login into Account'}
           </button>
         </div>
       </form>
