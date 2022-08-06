@@ -13,7 +13,7 @@ const Home = () => {
         <Navbar />
       </header>
       <div className="flex justify-center items-center h-screen flex-col">
-        <div className='font-gotham text-primary text-9xl md:lg sm:md'>Linkashare</div>
+        <div className='font-gotham text-primary lg:text-9xl md:lg sm:md'>Linkashare</div>
         <p>About to start work here next</p>
       </div>
     </main>
