@@ -3,7 +3,6 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "proxy":{"*":{ "target" :"https://link-a-share.herokuapp.com"}},
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
