@@ -17,7 +17,7 @@ const Login = () => {
     loading:false
   })
   return (
-    <main className="min-h-screen flex">
+    <main className="min-h-screen flex bg-dark text-white">
     <AuthBanner heading='Login to Your Account' suggest={(
       <p className='absolute top-0 text-xs p-4'>
       <span className="opacity-80"> Don't Have an Account Yet? ?</span> <Link to='/register' className='text-primary transition-all underline hover:decoration-double'>Sign up</Link>
@@ -71,7 +71,7 @@ const Login = () => {
           Forgotten Password?
         </Link>
         <div>
-          <button disabled={progress.loading} className={`p-5 py-4 text-white hover:bg-dark transition-colors my-6 cursor-pointer w-full bg-primary disabled:pointer-events-none disabled:opacity-60 disabled:select-none`}>
+          <button disabled={progress.loading} className={`p-5 py-4 text-white hover:text-dark hover:bg-white transition-colors my-6 cursor-pointer w-full bg-primary disabled:pointer-events-none disabled:opacity-60 disabled:select-none`}>
             {progress.loading ?(
               <div className="">
                 Please Wait ...

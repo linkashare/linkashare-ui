@@ -17,7 +17,7 @@ const Register = () => {
     loading:false
   })
   return (
-    <main className="min-h-screen flex">
+    <main className="min-h-screen flex bg-dark text-white">
     <AuthBanner>
       <form className="" onSubmit={(e)=>{
         e.preventDefault()
@@ -56,7 +56,7 @@ const Register = () => {
           Forgotten Password?
         </Link>
         <div>
-          <button disabled={progress.loading} className={`p-5 py-4 text-white hover:bg-dark transition-colors my-6 cursor-pointer w-full bg-primary disabled:pointer-events-none disabled:opacity-60 disabled:select-none`}>
+          <button disabled={progress.loading} className={`p-5 py-4 hover:text-dark hover:bg-white transition-colors my-6 cursor-pointer w-full bg-primary disabled:pointer-events-none disabled:opacity-60 disabled:select-none`}>
             {progress.loading ?(
               <div className="">
                 Please Wait ...
