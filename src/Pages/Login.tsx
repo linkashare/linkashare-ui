@@ -18,7 +18,11 @@ const Login = () => {
   })
   return (
     <main className="min-h-screen flex">
-    <AuthBanner>
+    <AuthBanner heading='Login to Your Account' suggest={(
+      <p className='absolute top-0 text-xs p-4'>
+      <span className="opacity-80"> Don't Have an Account Yet? ?</span> <Link to='/register' className='text-primary transition-all underline hover:decoration-double'>Sign up</Link>
+        </p>
+    )}>
       <form className="" onSubmit={(e)=>{
         e.preventDefault()
         console.log(state);

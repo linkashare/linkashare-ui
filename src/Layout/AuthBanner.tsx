@@ -2,21 +2,30 @@ import React, { Fragment, ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import Input from '../Components/Input'
 
-
-const AuthBanner = ({children}:{children:ReactNode}) => {
+interface AuthBannerProps{
+  children:ReactNode;
+  heading?:ReactNode;
+  subHeading?:ReactNode;
+  suggest?:ReactNode;
+}
+const AuthBanner = ({heading,subHeading,suggest,children}:AuthBannerProps) => {
   return (
     <Fragment>
     <div className=" md:w-1/2 flex items-center">
-        <p className='absolute top-0 text-xs p-4'>
-      <span className="opacity-80"> Have an account ?</span> <Link to='/signin' className='text-primary transition-all underline hover:decoration-double'>Sign in</Link>
+        {
+          suggest || (
+            <p className='absolute top-0 text-xs p-4'>
+      <span className="opacity-80"> Have an account ?</span> <Link to='/login' className='text-primary transition-all underline hover:decoration-double'>Sign in</Link>
         </p>
+          )
+        }
         {/*  */}
 
 
     <div className="p-12">
     <div className="py-1">
-        <h1 className='text-5xl'>Create new account.</h1>
-        <p className='text-sm my-3'>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <h1 className='text-5xl'>{heading || 'Create new account.'}</h1>
+        <p className='text-sm my-3'>{subHeading || 'Lorem ipsum dolor sit amet consectetur adipisicing elit.'}</p>
     </div>
 
    {
