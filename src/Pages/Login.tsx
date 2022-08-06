@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom';
 import Input from '../Components/Input';
 import AuthBanner from '../Layout/AuthBanner';
 
+
+
+
 const Login = () => {
     const [state, setState] = useState({
     email:'',
@@ -17,7 +20,7 @@ const Login = () => {
         e.preventDefault()
         console.log(state);
       
-        axios.post('https://link-a-share.herokuapp.com/login.php',state)
+        axios.post('https://linkashapii.herokuapp.com/login.php',state)
         .then(res=>{
           console.log(res)
         })
