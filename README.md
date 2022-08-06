@@ -121,7 +121,7 @@ To get a local copy up and running follow these simple steps.
 - [x] Added the navbar
 - [ ] Change Licence to MIT
 - [ ] Add Linting Support
-- [ ] Create 404 Page
+- [x] Create 404 Page
 - [ ] Create SignUp
 - [ ] Create Login
 - [ ] Create Homepage
@@ -164,7 +164,7 @@ Distributed under the Apache License. See `LICENSE.txt` for more information.
 ## Acknowledgments
 
 These are list of resources that we find helpful and would like to give credit to.
-
+* [dribbble](https://dribbble.com)
 * [Img Shields](https://shields.io)
 * [Font Awesome](https://fontawesome.com)
 * [React Icons](https://react-icons.github.io/react-icons/search)

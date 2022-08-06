@@ -3,10 +3,16 @@ import { Menu, Switch, Transition } from '@headlessui/react'
 import {logo} from '../Assets/index'
 import './Navbar.css'
 import { GiHamburgerMenu } from "react-icons/gi";
-
+import { useNavigate } from "react-router-dom";
 const Navbar = () => {
     const [enabled, setEnabled] = useState(false)
-
+    let navigate = useNavigate();
+    const handleLogin = () => {
+        navigate('/login')
+    }
+    const handleRegister = () => {
+        navigate('/register')
+    }
     return ( 
         <div className='w-full fixed'>
             {/* For pc view */}
@@ -31,8 +37,8 @@ const Navbar = () => {
                             } inline-block h-4 w-4 transform rounded-full bg-black`}
                         />
                     </Switch>
-                    <button className='bg-primary mr-4 px-5 rounded-lg'>Register</button>
-                    <button className='bg-textColor text-dark px-5 rounded-lg'>Login</button>
+                    <button className='bg-primary mr-4 px-5 rounded-lg' onClick={handleRegister}>Register</button>
+                    <button className='bg-textColor text-dark px-5 rounded-lg' onClick={handleLogin}>Login</button>
                 </div>
             </div>
 
@@ -61,7 +67,7 @@ const Navbar = () => {
             >
               <Menu.Items className="z-40  shadow-lg absolute right-0 top-10 w-56 origin-top-right divide-y divide-primary rounded-md bg-[#272727] ring-1 ring-black ring-opacity-5 focus:outline-none">
                 <Menu.Item>
-                    <a href="/signup" className="text-sm group flex w-full items-center rounded-md px-[20px] py-[15px]">Create An Account</a>
+                    <a href="/register" className="text-sm group flex w-full items-center rounded-md px-[20px] py-[15px]">Create An Account</a>
                 </Menu.Item>
                 <Menu.Item>
                     <a href="/login" className="text-sm group flex w-full items-center rounded-md px-[20px] py-[15px]">Login</a>
