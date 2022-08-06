@@ -11,6 +11,11 @@ const Login = () => {
     email:'',
     password:''
   })
+
+  const [progress, setProgress] = useState({
+    error:[false, undefined],
+    loading:false
+  })
   return (
     <main className="min-h-screen flex">
     <AuthBanner>
@@ -18,12 +23,24 @@ const Login = () => {
         e.preventDefault()
         console.log(state);
       
+        setProgress({
+          ...progress,
+          loading:true
+        })
         Axios.post('/login.php',state)
         .then(res=>{
-          console.log(res)
+          console.log(res);
+          setProgress({
+            loading:false,
+            error:[false,undefined]
+          })
         })
         .catch(err=>{
-          console.error(err)
+          setProgress({
+            loading:false,
+            error:[true, err.message]
+          })
+          console.error(err);
         })
       }}>
 
@@ -50,8 +67,12 @@ const Login = () => {
           Forgotten Password?
         </Link>
         <div>
-          <button className="p-5 py-4 text-white hover:bg-dark transition-colors my-6 w-full bg-primary">
-            Create an Account
+          <button disabled={progress.loading} className={`p-5 py-4 text-white hover:bg-dark transition-colors my-6 cursor-pointer w-full bg-primary disabled:pointer-events-none disabled:opacity-60 disabled:select-none`}>
+            {progress.loading ?(
+              <div className="">
+                Please Wait ...
+              </div>
+            ): 'Create an Account'}
           </button>
         </div>
       </form>
