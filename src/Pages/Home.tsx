@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { Fragment } from 'react'
 import {Helmet} from 'react-helmet';
 import Navbar from "../Components/Navbar"
-import {misty, verify, rocket, world} from "../Assets/index"
+import Footer from "../Components/Footer";
+import {misty, verify, rocket, world, globe} from "../Assets/index"
 
 const Home = () => {
   const [url, setUrl] = useState('');
@@ -48,21 +49,24 @@ const Home = () => {
             </div>
             <div className='w-[50%] pt-[4rem]'>
               <div className='text-[2.5rem] text-center font-bold text-primary'>Access your links across various locations</div>
-              <p className='pt-4'>Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              <p className='pt-4 px-3'>Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                 Praesentium rem quisquam impedit at sit minima quia, quis velit tempore distinctio? Voluptates illo tempora aspernatur eius consequuntur.
                 Necessitatibus doloribus eaque minima magnam, expedita et!</p>
             </div>
           </div>
           <div className='flex justify-between pt-[4rem] px-[5rem] flex-row-reverse pb-3'>
             <div className="">
-              <img src={world} alt="" className='w-[30rem] h-[30rem] rounded-2xl'/>
+              <img src={globe} alt="" className='w-[25rem] h-[30rem] rounded-2xl'/>
             </div>
             <div className='w-[50%] pt-[4rem]'>
               <div className='text-[2.5rem] text-center font-bold text-primary'>Keep Links in syncronization</div>
-              <p className='pt-4'>Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              <p className='pt-4 px-3'>Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                 Praesentium rem quisquam impedit at sit minima quia, quis velit tempore distinctio? Voluptates illo tempora aspernatur eius consequuntur.
                 Necessitatibus doloribus eaque minima magnam, expedita et!</p>
             </div>
+          </div>
+          <div>
+            <Footer />
           </div>
         </main>
     </Fragment>
