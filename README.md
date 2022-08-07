@@ -123,7 +123,7 @@ To get a local copy up and running follow these simple steps.
 - [ ] Add Linting Support
 - [x] Create 404 Page
 - [ ] Create SignUp
-- [ ] Create Login
+- [x] Create Login
 - [ ] Create Homepage
 - [ ] Shorten Link on Homepage
 
