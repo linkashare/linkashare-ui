@@ -122,9 +122,9 @@ To get a local copy up and running follow these simple steps.
 - [ ] Change Licence to MIT
 - [ ] Add Linting Support
 - [x] Create 404 Page
-- [ ] Create SignUp
+- [x] Create SignUp
 - [x] Create Login
-- [ ] Create Homepage
+- [x] Create Homepage
 - [ ] Shorten Link on Homepage
 
 See the [open issues](https://github.com/linkashare/linkashare-ui/issues) for a full list of proposed features (and known issues).
