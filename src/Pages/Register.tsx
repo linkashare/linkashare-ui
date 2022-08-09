@@ -34,6 +34,11 @@ const Register = () => {
             loading:false,
             error:[false,undefined]
           })
+          if(res.data[0] == 'Success'){
+            alert('Signed Up Successfully')
+            console.log('signUp');
+            window.location.replace('/')
+          }
         })
         .catch(err=>{
           setProgress({
