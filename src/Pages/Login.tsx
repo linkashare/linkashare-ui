@@ -39,7 +39,7 @@ const Login = () => {
             error:[false,undefined]
           })
           if(res.data[0] == 'Success'){
-            alert('Signed Up Successfully')
+            alert('Signed in Successfully')
             console.log('signUp');
             window.location.replace('/')
           }
