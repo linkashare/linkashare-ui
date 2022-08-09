@@ -4,6 +4,7 @@ import {FaEnvelope, FaLock, FaUser} from 'react-icons/all';
 import { Link } from "react-router-dom";
 import Input from "../Components/Input";
 import axios from 'axios';
+import Axios from "../Config/axios";
 
 const Register = () => {
   const [state, setState] = useState({
@@ -23,7 +24,21 @@ const Register = () => {
         e.preventDefault()
         console.log(state);
       
-       
+        Axios.post('/signup.php',state)
+        .then(res=>{
+          console.log(res);
+          setProgress({
+            loading:false,
+            error:[false,undefined]
+          })
+        })
+        .catch(err=>{
+          setProgress({
+            loading:false,
+            error:[true, err.message]
+          })
+          console.error(err);
+        })
       }}>
 
         <Input
