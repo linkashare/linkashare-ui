@@ -10,10 +10,10 @@ module.exports = {
         textColor:'#fff'
       },
       screens: {
-      sm: '480px',
-      md: '768px',
-      lg: '976px',
-      xl: '1440px',
+        sm: '30px',
+        md: '568px',
+        lg: '976px',
+        xl: '1440px',
       },
       fontFamily: {
         gotham: ["gotham"],
