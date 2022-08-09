@@ -25,7 +25,7 @@ const Login = () => {
     )}>
       <form className="" onSubmit={(e)=>{
         e.preventDefault()
-        console.log(state);
+        // console.log(state);
       
         setProgress({
           ...progress,

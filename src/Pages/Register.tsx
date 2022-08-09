@@ -22,7 +22,7 @@ const Register = () => {
     <AuthBanner>
       <form className="" autoComplete="false" onSubmit={(e)=>{
         e.preventDefault()
-        console.log(state);
+        // console.log(state);
         setProgress({
           ...progress,
           loading:true
