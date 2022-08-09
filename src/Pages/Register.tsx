@@ -23,7 +23,10 @@ const Register = () => {
       <form className="" autoComplete="false" onSubmit={(e)=>{
         e.preventDefault()
         console.log(state);
-      
+        setProgress({
+          ...progress,
+          loading:true
+        })
         Axios.post('/signup.php',state)
         .then(res=>{
           console.log(res);
