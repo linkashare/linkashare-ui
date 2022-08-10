@@ -2,7 +2,7 @@
   "name": "linkashare",
   "private": true,
   "version": "0.0.0",
-  "type": "module", 
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -11,6 +11,7 @@
   "dependencies": {
     "@headlessui/react": "^1.6.6",
     "axios": "^0.27.2",
+    "focus-trap-react": "^9.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",

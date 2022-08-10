@@ -9,10 +9,12 @@ import { Navigate, useNavigate } from 'react-router-dom';
 
 
 const Home = () => {
-  const [url, setUrl] = useState('');
   const [newUrl, setNewUrl] = useState('');
   const [showText, setShowText] = useState(false)
   let navigate = useNavigate();
+  const [state, setState] = useState({
+    url:'',
+  })
 
   const handleRegister = () =>{
     navigate('/register')
@@ -20,9 +22,16 @@ const Home = () => {
 
   const handleSubmit = () => {
     setShowText(true)
-  }
-  const  handleRoute = () => {
-    setNewUrl(window.location.href = url)
+    fetch("https://linkashapii.herokuapp.com/shortenlink.php", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify(state)
+    })
+    .then(res=>res.json())
+    .then((data)=>{setNewUrl(data[0])})
+    .catch((err)=>{console.log(err)});
   }
   return (
     <Fragment>
@@ -46,13 +55,13 @@ const Home = () => {
             <input type="text"
                   className='lg:w-[30%] h-[3rem] rounded-lg outline-none text-dark pl-4 md:w-[50%] sm:w-[80%]'
                   required 
-                  value={url}
                   placeholder="Enter a url"
-                  onChange= {(e) => setUrl(e.target.value)} 
+                  onChange={(e:any)=> setState({...state,url:e.target.value})}
+
             />
             <button className='bg-primary md:mt-0 lg:mt-0 ml-3 px-4 py-3 font-bold rounded-full sm:mt-3 sm:px-8' onClick={handleSubmit}>submit</button>
             </div>
-            {showText && (<div className='text-center pt-3'>Your Shortened Link is: <span><a onClick={handleRoute} target="_blank" className='cursor-pointer'>linkashare.com/usertest123</a></span></div>)}
+            {showText && (<div className='text-center pt-3'>Your Shortened Link is: <span><a href={newUrl} target="_blank" className='cursor-pointer'>{newUrl}</a></span></div>)}
             <div className="relative">
               <img src={rocket} alt="" className='w-[10rem] h-[10rem] absolute top-15 left-10 opacity-20 sm:w-[8rem] sm:h-[8rem] sm:top-14 sm:left-0'/>
             </div>
