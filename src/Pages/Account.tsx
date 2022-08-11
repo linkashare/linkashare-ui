@@ -7,10 +7,10 @@ import {Helmet} from 'react-helmet';
 
 const Account = () => {
     const [username, setUsername] = useState("")
-    const [links, setLinks] = useState([])
+    const [links, setLinks] = useState<any>([])
     const [totalLinks, setTotalLinks] = useState(0)
     const [showModal, setShowModal] = useState(false);
-    const [lastLink, setLastLink] = useState("")
+    const [lastLink, setLastLink] = useState<any>({})
     const params = useParams()
     let useId = params.userid;
     let navigate = useNavigate();
@@ -19,7 +19,7 @@ const Account = () => {
         navigate('/')
     }
 
-    let details = {
+    let userdetails = {
         "username": useId,
     }
     const [state, setState] = useState({
@@ -28,19 +28,25 @@ const Account = () => {
         fullurl: "",
         category: ""
     })
-
+let details = {
+    "username": useId,
+    "title": "",
+    "fullurl": "",
+    "category": ""
+}
     fetch("https://linkashapii.herokuapp.com/getuserinfo.php", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(details)
+        body: JSON.stringify(userdetails)
     })
     .then(res=>res.json())
     .then((data)=>{setUsername(data.username)})
     .catch((err)=>{console.log(err)});
 
     useEffect(() =>{
+
         fetch("https://linkashapii.herokuapp.com/getalllinks.php", {
         method: "POST",
         headers: {
@@ -53,6 +59,7 @@ const Account = () => {
             console.log(data)
             let lastdata = data[data.length - 1]
             setLastLink(lastdata)
+            console.log(lastdata)
             setTotalLinks(data.length)
             setLinks(data)
         })
@@ -167,7 +174,7 @@ const Account = () => {
             ) : null}
 
             <div className='w-full px-8 pb-5'>
-                {links.slice(-3).map(data => {
+                {links.slice(-3).map((data: { title: string ; fullurl: string | undefined; timeAdded: string | number | boolean }) => {
                 return (
                     <div key={data.title}>
                             <a href={data.fullurl} target='_blank' className='py-6 px-8 my-3 flex flex-auto justify-between bg-[#1F1F1F] rounded-2xl'>
@@ -198,7 +205,7 @@ const Account = () => {
             
 
             <div className='w-full px-8 pb-5'>
-                {links.map(data => {
+                {links.map((data: { title: string | number; fullurl: string | undefined; timeAdded: string | number ; }) => {
                 return (
                     <div key={data.title}>
                             <a href={data.fullurl} target='_blank' className='py-6 px-8 my-3 flex flex-auto justify-between bg-[#1F1F1F] rounded-2xl'>
