@@ -4,6 +4,7 @@ import {FaEnvelope, FaLock, FaUser} from 'react-icons/all';
 import { Link, useNavigate } from "react-router-dom";
 import Input from "../Components/Input";
 import axios from 'axios';
+import Axios from "../Config/axios";
 
 const Register = () => {
   const [state, setState] = useState({
@@ -23,7 +24,10 @@ const Register = () => {
     <AuthBanner>
       <form className="" autoComplete="false" onSubmit={(e)=>{
         e.preventDefault()
-
+        setProgress({
+          ...progress,
+          loading:true
+        })
       const validatePassword = () => {
           let isValid = true
           if (state.password !== '' && state.confirmpassword !== ''){
@@ -58,13 +62,25 @@ const Register = () => {
       })
       .then(res=>res.json())
       .then((data)=>{
-        navigate('/account/' + state.username)
+        console.log(data)
+          setProgress({
+            loading:false,
+            error:[false,undefined]
+          })
+          if(data[0] == 'Success'){
+            alert('Signed Up Successfully')
+            navigate('/account/' + state.username)
+
+          }
       })
-      .catch((err)=>{console.log(err)});
+      .catch((err)=>{
+          setProgress({
+            loading:false,
+            error:[true, err.message]
+          })
+      });
 
     }
-      
-       
       }}>
 
         <Input

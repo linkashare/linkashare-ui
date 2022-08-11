@@ -25,7 +25,6 @@ const Login = () => {
     )}>
       <form className="" onSubmit={(e)=>{
         e.preventDefault()
-        console.log(state);
       
         setProgress({
           ...progress,
@@ -38,6 +37,10 @@ const Login = () => {
             loading:false,
             error:[false,undefined]
           })
+          if(res.data[0] == 'Success'){
+            alert('Signed in Successfully')
+
+          }
         })
         .catch(err=>{
           setProgress({
