@@ -1,5 +1,6 @@
 import Navbar from "../Components/Navbar";
 import { errorImg } from "../Assets/index";
+import {Helmet} from 'react-helmet';
 import { useNavigate } from "react-router-dom";
 const PageNotFound = () =>{
     let navigate = useNavigate();
@@ -8,6 +9,9 @@ const PageNotFound = () =>{
     }
     return(
         <div className="">
+            <Helmet>
+                <title>Link-A-share | 404</title>
+            </Helmet>
             <header>
                 <Navbar />
             </header>

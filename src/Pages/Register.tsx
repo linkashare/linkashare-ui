@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AuthBanner from "../Layout/AuthBanner";
 import {FaEnvelope, FaLock, FaUser} from 'react-icons/all';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Input from "../Components/Input";
 import axios from 'axios';
 import Axios from "../Config/axios";
@@ -10,43 +10,77 @@ const Register = () => {
   const [state, setState] = useState({
     username:'',
     email:'',
-    password:''
+    password:'',
+    confirmpassword:'',
   })
 
   const [progress, setProgress] = useState({
     error:[false, undefined],
     loading:false
   })
+  let navigate = useNavigate();
   return (
     <main className="min-h-screen flex bg-dark text-white">
     <AuthBanner>
       <form className="" autoComplete="false" onSubmit={(e)=>{
         e.preventDefault()
-        // console.log(state);
         setProgress({
           ...progress,
           loading:true
         })
-        Axios.post('/signup.php',state)
-        .then(res=>{
-          console.log(res);
+      const validatePassword = () => {
+          let isValid = true
+          if (state.password !== '' && state.confirmpassword !== ''){
+            if (state.password !== state.confirmpassword) {
+              isValid = false
+              alert('Passwords does not match')
+            }
+          }
+          return isValid
+        }
+
+      const validateForm = () => {
+        let isValid = true
+        if ( state.username == '' || state.password =='') {
+          isValid = false
+          alert('invalid credentials')
+        }
+        else if (state.password.length < 6){
+          isValid = false
+          alert('password is not  strong')
+        }
+
+        return isValid
+      }
+    if(validatePassword() && validateForm()) {
+      fetch("https://linkashapii.herokuapp.com/signup.php", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json"
+          },
+          body: JSON.stringify(state)
+      })
+      .then(res=>res.json())
+      .then((data)=>{
+        console.log(data)
           setProgress({
             loading:false,
             error:[false,undefined]
           })
-          if(res.data[0] == 'Success'){
+          if(data[0] == 'Success'){
             alert('Signed Up Successfully')
-            console.log('signUp');
-            window.location.replace('/')
+            navigate('/account/' + state.username)
+
           }
-        })
-        .catch(err=>{
+      })
+      .catch((err)=>{
           setProgress({
             loading:false,
             error:[true, err.message]
           })
-          console.error(err);
-        })
+      });
+
+    }
       }}>
 
         <Input
@@ -69,6 +103,14 @@ const Register = () => {
           label="Password"
           placeholder="*******"
            onChange={(e:any)=> setState({...state,password:e.target.value})}
+          icon={<FaLock />}
+        />
+
+        <Input
+          type="password"
+          label="confirm password"
+          placeholder="*******"
+           onChange={(e:any)=> setState({...state,confirmpassword:e.target.value})}
           icon={<FaLock />}
         />
 
