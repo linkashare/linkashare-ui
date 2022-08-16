@@ -4,6 +4,7 @@ import { FaUser, FaEnvelope, FaLock } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import Input from '../Components/Input';
 import AuthBanner from '../Layout/AuthBanner';
+import { Post } from '../Utils/request';
 
 
 const Login = () => {
@@ -24,31 +25,22 @@ const Login = () => {
         </p>
     )}>
       <form className="" onSubmit={(e)=>{
-        e.preventDefault()
-      
-        setProgress({
-          ...progress,
-          loading:true
-        })
-        Axios.post('/login.php',state)
-        .then(res=>{
-          console.log(res);
-          setProgress({
-            loading:false,
-            error:[false,undefined]
-          })
-          if(res.data[0] == 'Success'){
-            alert('Signed in Successfully')
+       e.preventDefault();
+       //  validate 
+         setProgress({
+           ...progress,
+           loading:true
+         })
+         Post('/login.php',state,(res,err)=>{
+           setProgress({
+               loading:false,
+               error:[true, undefined]
+             })
+             
+             // data
+             console.log(res)
 
-          }
-        })
-        .catch(err=>{
-          setProgress({
-            loading:false,
-            error:[true, err.message]
-          })
-          console.error(err);
-        })
+         })
       }}>
 
         <Input
