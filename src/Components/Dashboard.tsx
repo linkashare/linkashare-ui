@@ -92,7 +92,7 @@ const Dashboard = () => {
     } );
 
 
-  },[])
+  },[userInfo,links])
 
   return (
     <main className="bg-dark text-textColor min-h-screen">
