@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FaStar } from "react-icons/fa";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import Input from "./Input";
 import { useNavigate } from "react-router-dom";
 import { Post } from "../Utils/request";
@@ -47,7 +47,7 @@ const Dashboard = () => {
   });
 const HandleFavourite=(data:any)=>{
     setFavourite({...addFavourite, title:data['title']})
-    Post('/updatefavourites.php?toggle=true', userdetails, (data, err) =>{
+    Post('/updatefavourites.php?toggle='+ !data['isFavourite'], userdetails, (data, err) =>{
         if(err) return console.log('an error occured')
     //    const _alllinks = data.data
     //    setLinks([...data['data']])
@@ -93,6 +93,7 @@ const HandleFavourite=(data:any)=>{
         if(err) return console.log('an error occured')
     //    const _alllinks = data.data
        setLinks([...data['data']])
+    //    console.log(links)
     } );
 
 //    Post('/getfavourites.php', userdetails, (data, err) =>{
@@ -148,9 +149,9 @@ const HandleFavourite=(data:any)=>{
     Keep your links in sync
     </div>
     <div>
-        <button className='p-0 py-4 hover:text-dark hover:bg-white  my-1 cursor-pointer w-full bg-primary disabled:pointer-events-none rounded-lg disabled:opacity-60 disabled:select-none ease-linear transition-all duration-150' onClick={() => setShowModal(true)}>Add New Link</button>
+        <button className='p-0 py-4 hover:text-dark hover:bg-white  m-6 cursor-pointer w-[95%] bg-primary disabled:pointer-events-none rounded-lg disabled:opacity-60 disabled:select-none ease-linear transition-all duration-150' onClick={() => setShowModal(true)}>Add New Link</button>
     </div>
-    <div className="flex flex-row justify-between px-8 py-1">
+    <div className="flex flex-row justify-between text-4xl font-bold px-8 py-3">
     <div>Recently Added</div>
     <div>
         <button
@@ -229,6 +230,7 @@ const HandleFavourite=(data:any)=>{
         .map(
         (data: {
             title: string;
+            isFavourite:string,
             fullurl: string | undefined;
             timeAdded: string | number | boolean;
         }) => {
@@ -245,8 +247,8 @@ const HandleFavourite=(data:any)=>{
                     <div className="text-sm">{data.timeAdded}</div>
                 </div>
     
-                <div onClick={()=> HandleFavourite(data) }>
-                    <FaStar />
+                <div onClick={()=> HandleFavourite(data) } className='text-3xl cursor-pointer'>
+                    { data.isFavourite == 'true' ? <AiFillStar />: <AiOutlineStar />}
                 </div>
                 </a>
             </div>
@@ -255,7 +257,7 @@ const HandleFavourite=(data:any)=>{
         )}
     </div>
     
-    <div className="flex flex-row justify-between px-8 py-1">
+    <div className="flex flex-row justify-between text-4xl font-bold px-8 py-3">
     <div>All Links</div>
     <div>
         <button
@@ -270,6 +272,7 @@ const HandleFavourite=(data:any)=>{
     <div className="w-full px-8 pb-5">
     {links.map(
         (data: {
+        isFavourite:string,
         title: string | number;
         fullurl: string | undefined;
         timeAdded: string | number;
@@ -288,8 +291,8 @@ const HandleFavourite=(data:any)=>{
                 <div className="text-sm">{data.timeAdded}</div>
                 </div>
     
-                <div>
-                <FaStar />
+                <div onClick={()=> HandleFavourite(data) } className='text-3xl cursor-pointer'>
+                    { data.isFavourite == 'true' ? <AiFillStar />: <AiOutlineStar />}
                 </div>
             </a>
             </div>
