@@ -30,7 +30,10 @@ const Dashboard = () => {
     username: useId
   });
 
-  const [totalLinks, setTotalLinks] = useState(0);
+  const [addFavourite, setFavourite] = useState({
+      username:useId,
+      title:''
+  })
   const [showModal, setShowModal] = useState(false);
   const [lastLink, setLastLink] = useState<any>({
       fullurl:'',
@@ -42,7 +45,15 @@ const Dashboard = () => {
     fullurl: "",
     category: "",
   });
-
+const HandleFavourite=(data:any)=>{
+    setFavourite({...addFavourite, title:data['title']})
+    Post('/updatefavourites.php?toggle=true', userdetails, (data, err) =>{
+        if(err) return console.log('an error occured')
+    //    const _alllinks = data.data
+    //    setLinks([...data['data']])
+    console.log(data)
+    } );
+}
   // logout
   const handleLogout = () => {
     clearStorage()
@@ -74,7 +85,7 @@ const Dashboard = () => {
    Post('/getuserinfo.php', userdetails, (data, err) =>{
         if(err) return console.log('an error occured')
         setUserInfo({...userInfo, ...data['data']})
-        console.log(userInfo)
+        // console.log(userInfo)
     } );
 
 
@@ -84,15 +95,15 @@ const Dashboard = () => {
        setLinks([...data['data']])
     } );
 
-   Post('/getfavourites.php', userdetails, (data, err) =>{
-        if(err) return console.log('an error occured')
-    //    const _alllinks = data.data
-    //    setLinks([...data['data']])
-    console.log(data)
-    } );
+//    Post('/getfavourites.php', userdetails, (data, err) =>{
+//         if(err) return console.log('an error occured')
+//     //    const _alllinks = data.data
+//     //    setLinks([...data['data']])
+//     console.log(data)
+//     } );
 
 
-  },[userInfo,links])
+  },[links])
 
   return (
     <main className="bg-dark text-textColor min-h-screen">
@@ -224,7 +235,6 @@ const Dashboard = () => {
             return (
             <div key={data.title}>
                 <a
-                href={data.fullurl}
                 target="_blank"
                 className="py-6 px-8 my-3 flex flex-auto justify-between bg-[#1F1F1F] rounded-2xl"
                 >
@@ -235,7 +245,7 @@ const Dashboard = () => {
                     <div className="text-sm">{data.timeAdded}</div>
                 </div>
     
-                <div>
+                <div onClick={()=> HandleFavourite(data) }>
                     <FaStar />
                 </div>
                 </a>
