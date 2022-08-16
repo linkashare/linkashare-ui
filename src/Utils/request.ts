@@ -1,7 +1,7 @@
 import Axios from "../Config/axios";
 
 interface DataInterface {
-[key:string]:string
+[key:string]:any
 }
 
 export const Post = (url:string ,data:DataInterface , callback?:(data:any, err?:string)=> void )=>{

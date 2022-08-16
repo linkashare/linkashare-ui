@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 import Input from '../Components/Input';
 import AuthBanner from '../Layout/AuthBanner';
 import { Post } from '../Utils/request';
-
+import {save as StorageSave} from '../Utils/storage'
 
 const Login = () => {
     const [state, setState] = useState({
-    email:'',
+    username:'',
     password:''
   })
 
@@ -39,15 +39,20 @@ const Login = () => {
              
              // data
              console.log(res)
+             if(res.data[0] == 'Success'){
+              //  save
+              StorageSave(state.username);
+              window.location.assign('/account')
+             }
 
          })
       }}>
 
         <Input
-          type="email"
-          label="E-mail"
+          type="username"
+          label="Username"
           placeholder="example@mail.com"
-           onChange={(e:any)=> setState({...state,email:e.target.value})}
+           onChange={(e:any)=> setState({...state,username:e.target.value})}
           icon={<FaEnvelope />}
         />
 

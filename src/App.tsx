@@ -14,7 +14,7 @@ function App() {
      <Route path='*' element={<PageNotFound />} />
      <Route path='/register' element={<Register />} />
      <Route path='/login' element={<Login />} />
-     <Route path="/account/:userid" element={<Account />} />
+     <Route path="/account" element={<Account />} />
      
    </Routes>
   )
