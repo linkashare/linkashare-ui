@@ -45,9 +45,10 @@ const Dashboard = () => {
     fullurl: "",
     category: "",
   });
-const HandleFavourite=(data:any)=>{
-    setFavourite({...addFavourite, title:data['title']})
-    Post('/updatefavourites.php?toggle='+ !data['isFavourite'], userdetails, (data, err) =>{
+const HandleFavourite=(_data:any)=>{
+    setFavourite({...addFavourite, title:_data['title']})
+    let toggle = _data['isFavourite'] =='true' ? 'false' : 'true'
+    Post('/updatefavourites.php?toggle='+ toggle, addFavourite, (data, err) =>{
         if(err) return console.log('an error occured')
     //    const _alllinks = data.data
     //    setLinks([...data['data']])
@@ -104,7 +105,7 @@ const HandleFavourite=(data:any)=>{
 //     } );
 
 
-  },[links])
+  },[links,addFavourite])
 
   return (
     <main className="bg-dark text-textColor min-h-screen">
