@@ -4,6 +4,8 @@ import {FaEnvelope, FaLock, FaUser} from 'react-icons/all';
 import { Link, useNavigate } from "react-router-dom";
 import Input from "../Components/Input";
 import {Post} from '../Utils/request';
+import { save as StorageSave } from '../Utils/storage';
+
 
 const Register = () => {
   const [state, setState] = useState({
@@ -34,8 +36,14 @@ const Register = () => {
                 error:[true, undefined]
               })
               
-              // data
-              console.log(res)
+                 // data
+                 console.log(res)
+                 if(res.data[0] == 'Success'){
+                  //  save
+                  StorageSave(state.username);
+                  window.location.assign('/account')
+                 }
+    
 
           })
       }}>
