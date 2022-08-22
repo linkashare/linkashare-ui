@@ -9,7 +9,7 @@ import { FaPlus, FaSpinner, FaTrash } from "react-icons/fa";
 const Dashboard = () => {
   let navigate = useNavigate();
   let useId = getStorage()
-    const [isLoading, setLoading] = useState(false)
+    const [isLoading, setLoading] = useState(false);
   const [userInfo, setUserInfo] = useState<any>({
     dateJoined: "",
     email: "",
@@ -50,7 +50,7 @@ const HandleFavourite=(_data:any)=>{
         if(err) return console.log('an error occured')
     //    const _alllinks = data.data
     //    setLinks([...data['data']])
-    console.log(data)
+    // console.log(data)
     } );
 }
   // logout
@@ -81,23 +81,22 @@ const HandleFavourite=(_data:any)=>{
         // console.log(userInfo)
     } );
 
+   
 
    Post('/getalllinks.php', userdetails, (data, err) =>{
         if(err) return console.log('an error occured')
     //    const _alllinks = data.data
-       if(data.data.length > 0){
+    // console.log(data, "get all")
+       if(data.data[0] !='N/A'){
         setLinks([...data['data']])
         setLoading(false)
        }
-    //    console.log(links)
     } );
 
-//    Post('/getfavourites.php', userdetails, (data, err) =>{
-//         if(err) return console.log('an error occured')
-//     //    const _alllinks = data.data
-//     //    setLinks([...data['data']])
-//     console.log(data)
-//     } );
+   Post('/getfavourites.php', userdetails, (data, err) =>{
+        if(err) return console.log('an error occured')
+         console.log(data)
+    } );
 
 
   },[links,addFavourite]);
@@ -107,7 +106,7 @@ const HandleFavourite=(_data:any)=>{
         username:useId,
         title
     }, (data, err)=>{
-        console.log(data)
+        // console.log(data)
     })
   }
 
@@ -148,17 +147,17 @@ const HandleFavourite=(_data:any)=>{
         <div className="pl-4 text-[40px] text-primary">0</div>
     </div>
     <div>
-        {links.slice(-1).map((data:{title:string, fullurl:string}) => (
-        <a href={data.fullurl} target="_blank">
+        {/* {links.slice(-1).map((data:{title:string, fullurl:string}) => ( */}
+        <a href={links.length > 0? links[links.length-1].fullurl : ''} target="_blank">
               <div className="h-[10rem] w-[15rem] bg-[#1F1F1F] rounded-2xl pl-2 pt-2">
               <div className="pl-4 text-[25px]">Last Added</div>
               <h3 className="pl-4 text-[20px] text-primary">
-              {data.title || '-'}
+              {links.length > 0? links[links.length-1].title : '-'}
               </h3>
           </div>
         </a>
-        ) )
-        }
+        {/* ) )
+        } */}
     </div>
     </div>
     <div className="py-3 pl-6 text-[30px] text-primary">
@@ -167,14 +166,7 @@ const HandleFavourite=(_data:any)=>{
     
     <div className="flex flex-row justify-between text-4xl font-bold px-8 py-3">
     <div>Favourites </div>
-    <div>
-        {/* <button
-        className="text-[30px] hover:text-primary ease-linear transition-all duration-150"
-        onClick={() => setShowModal(true)}
-        >
-        +
-        </button> */}
-    </div>
+
     </div>
     
     {showModal ? (
