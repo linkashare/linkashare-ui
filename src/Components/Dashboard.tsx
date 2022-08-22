@@ -10,6 +10,7 @@ const Dashboard = () => {
   let navigate = useNavigate();
   let useId = getStorage()
     const [isLoading, setLoading] = useState(false);
+    const [favouritesNo , setFav] = useState(0);
   const [userInfo, setUserInfo] = useState<any>({
     dateJoined: "",
     email: "",
@@ -95,7 +96,7 @@ const HandleFavourite=(_data:any)=>{
 
    Post('/getfavourites.php', userdetails, (data, err) =>{
         if(err) return console.log('an error occured')
-         console.log(data)
+        setFav(data.data.length)
     } );
 
 
@@ -144,7 +145,7 @@ const HandleFavourite=(_data:any)=>{
    
     <div className="h-[10rem] w-[15rem] bg-[#1F1F1F] rounded-2xl pl-2 pt-2 cursor-pointer">
         <div className="pl-4 text-[25px]">Starred Links</div>
-        <div className="pl-4 text-[40px] text-primary">0</div>
+        <div className="pl-4 text-[40px] text-primary">{favouritesNo || '0'}</div>
     </div>
     <div>
         {/* {links.slice(-1).map((data:{title:string, fullurl:string}) => ( */}
