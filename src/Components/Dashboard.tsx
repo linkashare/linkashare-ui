@@ -142,8 +142,8 @@ const HandleFavourite=(_data:any)=>{
         <div className="pl-4 text-[40px] text-primary">0</div>
     </div>
     <div>
-        {links.slice(-1).map((data:{title:string}) => (
-        <a href='' target="_blank">
+        {links.slice(-1).map((data:{title:string, fullurl:string}) => (
+        <a href={data.fullurl} target="_blank">
               <div className="h-[10rem] w-[15rem] bg-[#1F1F1F] rounded-2xl pl-2 pt-2">
               <div className="pl-4 text-[25px]">Last Added</div>
               <h3 className="pl-4 text-[20px] text-primary">
