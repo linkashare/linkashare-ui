@@ -4,6 +4,7 @@ import Input from "./Input";
 import { useNavigate } from "react-router-dom";
 import { Post } from "../Utils/request";
 import { clear as clearStorage, get as getStorage } from '../Utils/storage'
+import { FaTrash } from "react-icons/fa";
 
 const Dashboard = () => {
   let navigate = useNavigate();
@@ -105,7 +106,16 @@ const HandleFavourite=(_data:any)=>{
 //     } );
 
 
-  },[links,addFavourite])
+  },[links,addFavourite]);
+
+  const deleteLink= (title:string)=>{
+    Post('/deletelink.php',{
+        username:useId,
+        title
+    }, (data, err)=>{
+        console.log(data)
+    })
+  }
 
   return (
     <main className="bg-dark text-textColor min-h-screen">
@@ -274,14 +284,14 @@ const HandleFavourite=(_data:any)=>{
     {links.map(
         (data: {
         isFavourite:string,
-        title: string | number;
+        title: string ;
         fullurl: string | undefined;
         timeAdded: string | number;
         }) => {
         return (
             <div key={data.title}>
             <a
-                href={data.fullurl}
+                // href={data.fullurl}
                 target="_blank"
                 className="py-6 px-8 my-3 flex flex-auto justify-between bg-[#1F1F1F] rounded-2xl"
             >
@@ -292,9 +302,14 @@ const HandleFavourite=(_data:any)=>{
                 <div className="text-sm">{data.timeAdded}</div>
                 </div>
     
-                <div onClick={()=> HandleFavourite(data) } className='text-3xl cursor-pointer'>
+               <div className="flex items-center gap-3">
+               <div onClick={()=> HandleFavourite(data) } className='text-3xl cursor-pointer'>
                     { data.isFavourite == 'true' ? <AiFillStar />: <AiOutlineStar />}
                 </div>
+                <div onClick={()=> deleteLink(data.title) } className='text-xl text-red-400 cursor-pointer'>
+                    <FaTrash />
+                </div>
+               </div>
             </a>
             </div>
         );

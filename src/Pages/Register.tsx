@@ -35,7 +35,7 @@ const Register = () => {
                 loading:false,
                 error:[true, undefined]
               })
-              
+               
                  // data
                  console.log(res)
                  if(res.data[0] == 'Success'){
