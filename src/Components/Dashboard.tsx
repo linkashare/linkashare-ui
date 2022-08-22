@@ -4,12 +4,12 @@ import Input from "./Input";
 import { useNavigate } from "react-router-dom";
 import { Post } from "../Utils/request";
 import { clear as clearStorage, get as getStorage } from '../Utils/storage'
-import { FaSpinner, FaTrash } from "react-icons/fa";
+import { FaPlus, FaSpinner, FaTrash } from "react-icons/fa";
 
 const Dashboard = () => {
   let navigate = useNavigate();
   let useId = getStorage()
-    const [isLoading, setLoading] = useState(true)
+    const [isLoading, setLoading] = useState(false)
   const [userInfo, setUserInfo] = useState<any>({
     dateJoined: "",
     email: "",
@@ -127,6 +127,9 @@ const HandleFavourite=(_data:any)=>{
             </div>
         ): (
             <>
+          
+        <button className='bg-primary  m-12 hover:text-dark hover:bg-white  cursor-pointer w-[100px] h-[100px] flex items-center justify-center text-xl fixed bottom-0 right-0 rounded-full  ease-linear transition-all duration-150' onClick={() => setShowModal(true)}><FaPlus /></button>
+ 
            <div className="flex flex-row pt-4 px-[2rem] justify-between">
     <div className="capitalize text-[30px]">
         welcome, <span className="font-gotham text-primary">{userInfo.username || 'User'}</span>
@@ -167,9 +170,7 @@ const HandleFavourite=(_data:any)=>{
     <div className="py-3 pl-6 text-[30px] text-primary">
     Keep your links in sync
     </div>
-    <div className='relative m-8'>
-        <button className='p-0 py-4 hover:text-dark hover:bg-white  cursor-pointer w-full bg-primary disabled:pointer-events-none rounded-lg disabled:opacity-60 disabled:select-none ease-linear transition-all duration-150' onClick={() => setShowModal(true)}>Add New Link</button>
-    </div>
+    
     <div className="flex flex-row justify-between text-4xl font-bold px-8 py-3">
     <div>Recently Added</div>
     <div>
