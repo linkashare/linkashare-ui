@@ -28,12 +28,12 @@ const Account = () => {
         fullurl: "",
         category: ""
     })
-let details = {
-    "username": useId,
-    "title": "",
-    "fullurl": "",
-    "category": ""
-}
+    let details = {
+        "username": useId,
+        "title": "",
+        "fullurl": "",
+        "category": ""
+    }
     fetch("https://linkashapii.herokuapp.com/getuserinfo.php", {
         method: "POST",
         headers: {
@@ -59,7 +59,6 @@ let details = {
             console.log(data)
             let lastdata = data[data.length - 1]
             setLastLink(lastdata)
-            console.log(lastdata)
             setTotalLinks(data.length)
             setLinks(data)
         })
