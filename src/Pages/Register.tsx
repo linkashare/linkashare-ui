@@ -3,8 +3,9 @@ import AuthBanner from "../Layout/AuthBanner";
 import {FaEnvelope, FaLock, FaUser} from 'react-icons/all';
 import { Link, useNavigate } from "react-router-dom";
 import Input from "../Components/Input";
-import axios from 'axios';
-import Axios from "../Config/axios";
+import {Post} from '../Utils/request';
+import { save as StorageSave } from '../Utils/storage';
+
 
 const Register = () => {
   const [state, setState] = useState({
@@ -23,64 +24,28 @@ const Register = () => {
     <main className="min-h-screen flex bg-dark text-white">
     <AuthBanner>
       <form className="" autoComplete="false" onSubmit={(e)=>{
-        e.preventDefault()
-        setProgress({
-          ...progress,
-          loading:true
-        })
-      const validatePassword = () => {
-          let isValid = true
-          if (state.password !== '' && state.confirmpassword !== ''){
-            if (state.password !== state.confirmpassword) {
-              isValid = false
-              alert('Passwords does not match')
-            }
-          }
-          return isValid
-        }
-
-      const validateForm = () => {
-        let isValid = true
-        if ( state.username == '' || state.password =='') {
-          isValid = false
-          alert('invalid credentials')
-        }
-        else if (state.password.length < 6){
-          isValid = false
-          alert('password is not  strong')
-        }
-
-        return isValid
-      }
-    if(validatePassword() && validateForm()) {
-      fetch("https://linkashapii.herokuapp.com/signup.php", {
-          method: "POST",
-          headers: {
-              "Content-Type": "application/json"
-          },
-          body: JSON.stringify(state)
-      })
-      .then(res=>res.json())
-      .then((data)=>{
-        console.log(data)
+        e.preventDefault();
+        //  validate 
           setProgress({
-            loading:false,
-            error:[false,undefined]
+            ...progress,
+            loading:true
           })
-          if(data[0] == 'Success'){
-            alert('Signed Up Successfully')
-            navigate('/account/' + state.username)
+          Post('/signup.php',state,(res,err)=>{
+            setProgress({
+                loading:false,
+                error:[true, undefined]
+              })
+               
+                 // data
+                 console.log(res)
+                 if(res.data[0] == 'Success'){
+                  //  save
+                  StorageSave(state.username);
+                  window.location.assign('/account')
+                 }
+    
 
-          }
-      })
-      .catch((err)=>{
-          setProgress({
-            loading:false,
-            error:[true, err.message]
           })
-      });
-
-    }
       }}>
 
         <Input
