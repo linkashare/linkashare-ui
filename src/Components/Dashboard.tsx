@@ -131,7 +131,7 @@ const HandleFavourite=(_data:any)=>{
         </button>
     </div>
     </div>
-    <div className="mt-8 px-9 justify-between flex flex-row">
+    <div className="mt-8 px-9 justify-center flex flex-wrap gap-3 md:gap-5">
     <div className="h-[10rem] w-[15rem] bg-[#1F1F1F] rounded-2xl pl-2 pt-2 cursor-pointer">
         <div className="pl-4 text-[25px]">Total Links</div>
         <div className="pl-4 text-[40px] text-primary">{links.length}</div>
@@ -158,8 +158,8 @@ const HandleFavourite=(_data:any)=>{
     <div className="py-3 pl-6 text-[30px] text-primary">
     Keep your links in sync
     </div>
-    <div>
-        <button className='p-0 py-4 hover:text-dark hover:bg-white  m-6 cursor-pointer w-[95%] bg-primary disabled:pointer-events-none rounded-lg disabled:opacity-60 disabled:select-none ease-linear transition-all duration-150' onClick={() => setShowModal(true)}>Add New Link</button>
+    <div className='relative m-8'>
+        <button className='p-0 py-4 hover:text-dark hover:bg-white  cursor-pointer w-full bg-primary disabled:pointer-events-none rounded-lg disabled:opacity-60 disabled:select-none ease-linear transition-all duration-150' onClick={() => setShowModal(true)}>Add New Link</button>
     </div>
     <div className="flex flex-row justify-between text-4xl font-bold px-8 py-3">
     <div>Recently Added</div>
