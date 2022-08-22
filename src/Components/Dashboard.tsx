@@ -63,12 +63,6 @@ const HandleFavourite=(_data:any)=>{
     username: useId,
   };
 
-  let details = {
-    username: useId,
-    title: "",
-    fullurl: "",
-    category: "",
-  };
 
   const handleModal =() =>{
     Post('/storelinkinfo.php', link, (data, err) =>{
@@ -172,14 +166,14 @@ const HandleFavourite=(_data:any)=>{
     </div>
     
     <div className="flex flex-row justify-between text-4xl font-bold px-8 py-3">
-    <div>Recently Added</div>
+    <div>Favourites </div>
     <div>
-        <button
+        {/* <button
         className="text-[30px] hover:text-primary ease-linear transition-all duration-150"
         onClick={() => setShowModal(true)}
         >
         +
-        </button>
+        </button> */}
     </div>
     </div>
     
@@ -249,7 +243,6 @@ const HandleFavourite=(_data:any)=>{
       links.length > 0?(
         <div className="">
         {links
-             .slice(-3)
              .map(
              (data: {
                  title: string;
@@ -257,32 +250,33 @@ const HandleFavourite=(_data:any)=>{
                  fullurl: string | undefined;
                  timeAdded: string | number | boolean;
              }) => {
-                 return (
-                     <div key={data.title}>
-                     <a
-                         target="_blank"
-                         className="py-6 px-8 my-3 flex flex-auto justify-between bg-[#1F1F1F] rounded-2xl"
-                     >
-                         <div>
-                         <div className="text-primary pb-3 text-[25px] font-bold">
-                            <a href={data.fullurl}>
-                            {data.title}
-                            </a>
-                         </div>
-                         <div className="text-sm">{data.timeAdded}</div>
-                         </div>
-             
-                        <div className="flex items-center gap-3">
-                        <div onClick={()=> HandleFavourite(data) } className='text-3xl cursor-pointer'>
-                             { data.isFavourite == 'true' ? <AiFillStar />: <AiOutlineStar />}
-                         </div>
-                         <div onClick={()=> deleteLink(data.title) } className='text-xl text-red-400 cursor-pointer'>
-                             <FaTrash />
-                         </div>
-                        </div>
-                     </a>
-                     </div>
-                 );
+               return data.isFavourite == 'true'? (
+                <div key={data.title}>
+                <a
+                    target="_blank"
+                    className="py-6 px-8 my-3 flex flex-auto justify-between bg-[#1F1F1F] rounded-2xl"
+                >
+                    <div>
+                    <div className="text-primary pb-3 text-[25px] font-bold">
+                       <a href={data.fullurl}>
+                       {data.title}
+                       </a>
+                    </div>
+                    <div className="text-sm">{data.timeAdded}</div>
+                    </div>
+        
+                   <div className="flex items-center gap-3">
+                   <div onClick={()=> HandleFavourite(data) } className='text-3xl cursor-pointer'>
+                        { data.isFavourite == 'true' ? <AiFillStar />: <AiOutlineStar />}
+                    </div>
+                    <div onClick={()=> deleteLink(data.title) } className='text-xl text-red-400 cursor-pointer'>
+                        <FaTrash />
+                    </div>
+                   </div>
+                </a>
+                </div>
+               ):<span></span>
+               
              }
              )}
         </div>
