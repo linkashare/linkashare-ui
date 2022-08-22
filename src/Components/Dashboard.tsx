@@ -36,10 +36,7 @@ const Dashboard = () => {
       title:''
   })
   const [showModal, setShowModal] = useState(false);
-  const [lastLink, setLastLink] = useState<any>({
-      fullurl:'',
-      title:''
-  });
+
   const [state, setState] = useState({
     username: useId,
     title: "",
@@ -137,23 +134,23 @@ const HandleFavourite=(_data:any)=>{
         <div className="pl-4 text-[25px]">Total Links</div>
         <div className="pl-4 text-[40px] text-primary">{links.length}</div>
     </div>
-    <div className="h-[10rem] w-[15rem] bg-[#1F1F1F] rounded-2xl pl-2 pt-2 cursor-pointer">
-        <div className="pl-4 text-[25px] capitalize">most visited</div>
-        <div className="pl-4 pt-4 text-[20px] text-primary">my github</div>
-    </div>
+   
     <div className="h-[10rem] w-[15rem] bg-[#1F1F1F] rounded-2xl pl-2 pt-2 cursor-pointer">
         <div className="pl-4 text-[25px]">Starred Links</div>
         <div className="pl-4 text-[40px] text-primary">0</div>
     </div>
     <div>
-        <a href={lastLink.fullurl} target="_blank">
-        <div className="h-[10rem] w-[15rem] bg-[#1F1F1F] rounded-2xl pl-2 pt-2">
-            <div className="pl-4 text-[25px]">Last Added</div>
-            <div className="pl-4 text-[20px] text-primary">
-            {lastLink.title}
-            </div>
-        </div>
+        {links.slice(-1).map((data:{title:string}) => (
+        <a href='' target="_blank">
+              <div className="h-[10rem] w-[15rem] bg-[#1F1F1F] rounded-2xl pl-2 pt-2">
+              <div className="pl-4 text-[25px]">Last Added</div>
+              <h3 className="pl-4 text-[20px] text-primary">
+              {data.title}
+              </h3>
+          </div>
         </a>
+        ) )
+        }
     </div>
     </div>
     <div className="py-3 pl-6 text-[30px] text-primary">
