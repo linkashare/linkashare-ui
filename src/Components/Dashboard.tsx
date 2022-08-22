@@ -91,7 +91,9 @@ const HandleFavourite=(_data:any)=>{
    Post('/getalllinks.php', userdetails, (data, err) =>{
         if(err) return console.log('an error occured')
     //    const _alllinks = data.data
-       setLinks([...data['data']])
+       if(data.data.length > 0){
+        setLinks([...data['data']])
+       }
     //    console.log(links)
     } );
 
@@ -233,43 +235,49 @@ const HandleFavourite=(_data:any)=>{
     ) : null}
     
     <div className="w-full px-8 pb-5">
-    {links
-        .slice(-3)
-        .map(
-        (data: {
-            title: string;
-            isFavourite:string,
-            fullurl: string | undefined;
-            timeAdded: string | number | boolean;
-        }) => {
-            return (
-                <div key={data.title}>
-                <a
-                    target="_blank"
-                    className="py-6 px-8 my-3 flex flex-auto justify-between bg-[#1F1F1F] rounded-2xl"
-                >
-                    <div>
-                    <div className="text-primary pb-3 text-[25px] font-bold">
-                       <a href={data.fullurl}>
-                       {data.title}
-                       </a>
-                    </div>
-                    <div className="text-sm">{data.timeAdded}</div>
-                    </div>
-        
-                   <div className="flex items-center gap-3">
-                   <div onClick={()=> HandleFavourite(data) } className='text-3xl cursor-pointer'>
-                        { data.isFavourite == 'true' ? <AiFillStar />: <AiOutlineStar />}
-                    </div>
-                    <div onClick={()=> deleteLink(data.title) } className='text-xl text-red-400 cursor-pointer'>
-                        <FaTrash />
-                    </div>
-                   </div>
-                </a>
-                </div>
-            );
-        }
-        )}
+  {
+      links.length > 0?(
+        <div className="">
+        {links
+             .slice(-3)
+             .map(
+             (data: {
+                 title: string;
+                 isFavourite:string,
+                 fullurl: string | undefined;
+                 timeAdded: string | number | boolean;
+             }) => {
+                 return (
+                     <div key={data.title}>
+                     <a
+                         target="_blank"
+                         className="py-6 px-8 my-3 flex flex-auto justify-between bg-[#1F1F1F] rounded-2xl"
+                     >
+                         <div>
+                         <div className="text-primary pb-3 text-[25px] font-bold">
+                            <a href={data.fullurl}>
+                            {data.title}
+                            </a>
+                         </div>
+                         <div className="text-sm">{data.timeAdded}</div>
+                         </div>
+             
+                        <div className="flex items-center gap-3">
+                        <div onClick={()=> HandleFavourite(data) } className='text-3xl cursor-pointer'>
+                             { data.isFavourite == 'true' ? <AiFillStar />: <AiOutlineStar />}
+                         </div>
+                         <div onClick={()=> deleteLink(data.title) } className='text-xl text-red-400 cursor-pointer'>
+                             <FaTrash />
+                         </div>
+                        </div>
+                     </a>
+                     </div>
+                 );
+             }
+             )}
+        </div>
+      ):(<h2 className='text-2xl py-4'>No links added yet</h2>)
+  }
     </div>
     
     <div className="flex flex-row justify-between text-4xl font-bold px-8 py-3">
@@ -285,41 +293,49 @@ const HandleFavourite=(_data:any)=>{
     </div>
     
     <div className="w-full px-8 pb-5">
-    {links.map(
-        (data: {
-        isFavourite:string,
-        title: string ;
-        fullurl: string | undefined;
-        timeAdded: string | number;
-        }) => {
-        return (
-            <div key={data.title}>
-            <a
-                target="_blank"
-                className="py-6 px-8 my-3 flex flex-auto justify-between bg-[#1F1F1F] rounded-2xl"
-            >
-                <div>
-                <div className="text-primary pb-3 text-[25px] font-bold">
-                   <a href={data.fullurl}>
-                   {data.title}
-                   </a>
-                </div>
-                <div className="text-sm">{data.timeAdded}</div>
-                </div>
-    
-               <div className="flex items-center gap-3">
-               <div onClick={()=> HandleFavourite(data) } className='text-3xl cursor-pointer'>
-                    { data.isFavourite == 'true' ? <AiFillStar />: <AiOutlineStar />}
-                </div>
-                <div onClick={()=> deleteLink(data.title) } className='text-xl text-red-400 cursor-pointer'>
-                    <FaTrash />
-                </div>
-               </div>
-            </a>
-            </div>
-        );
-        }
-    )}
+  {
+      links.length > 0?(
+        <div className="">
+        {links
+             .slice(-3)
+             .map(
+             (data: {
+                 title: string;
+                 isFavourite:string,
+                 fullurl: string | undefined;
+                 timeAdded: string | number | boolean;
+             }) => {
+                 return (
+                     <div key={data.title}>
+                     <a
+                         target="_blank"
+                         className="py-6 px-8 my-3 flex flex-auto justify-between bg-[#1F1F1F] rounded-2xl"
+                     >
+                         <div>
+                         <div className="text-primary pb-3 text-[25px] font-bold">
+                            <a href={data.fullurl}>
+                            {data.title}
+                            </a>
+                         </div>
+                         <div className="text-sm">{data.timeAdded}</div>
+                         </div>
+             
+                        <div className="flex items-center gap-3">
+                        <div onClick={()=> HandleFavourite(data) } className='text-3xl cursor-pointer'>
+                             { data.isFavourite == 'true' ? <AiFillStar />: <AiOutlineStar />}
+                         </div>
+                         <div onClick={()=> deleteLink(data.title) } className='text-xl text-red-400 cursor-pointer'>
+                             <FaTrash />
+                         </div>
+                        </div>
+                     </a>
+                     </div>
+                 );
+             }
+             )}
+        </div>
+      ):(<h2 className='text-2xl py-4'>No links added yet</h2>)
+  }
     </div>
     </main>
       );
