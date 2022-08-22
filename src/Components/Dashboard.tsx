@@ -48,10 +48,7 @@ const HandleFavourite=(_data:any)=>{
     setFavourite({...addFavourite, title:_data['title']})
     let toggle = _data['isFavourite'] =='true' ? 'false' : 'true'
     Post('/updatefavourites.php?toggle='+ toggle, addFavourite, (data, err) =>{
-        if(err) return console.log('an error occured')
-    //    const _alllinks = data.data
-    //    setLinks([...data['data']])
-    // console.log(data)
+        if(err) return console.log('an error occured') 
     } );
 }
   // logout
@@ -78,16 +75,13 @@ const HandleFavourite=(_data:any)=>{
     //   user info
    Post('/getuserinfo.php', userdetails, (data, err) =>{
         if(err) return console.log('an error occured')
-        setUserInfo({...userInfo, ...data['data']})
-        // console.log(userInfo)
+        setUserInfo({...userInfo, ...data['data']}) 
     } );
 
    
 
    Post('/getalllinks.php', userdetails, (data, err) =>{
-        if(err) return console.log('an error occured')
-    //    const _alllinks = data.data
-    // console.log(data, "get all")
+        if(err) return console.log('an error occured') 
        if(data.data[0] !='N/A'){
         setLinks([...data['data']])
         setLoading(false)
@@ -148,7 +142,7 @@ const HandleFavourite=(_data:any)=>{
         <div className="pl-4 text-[40px] text-primary">{favouritesNo || '0'}</div>
     </div>
     <div>
-        {/* {links.slice(-1).map((data:{title:string, fullurl:string}) => ( */}
+        
         <a href={links.length > 0? links[links.length-1].fullurl : ''} target="_blank">
               <div className="h-[10rem] w-[15rem] bg-[#1F1F1F] rounded-2xl pl-2 pt-2">
               <div className="pl-4 text-[25px]">Last Added</div>
@@ -157,8 +151,7 @@ const HandleFavourite=(_data:any)=>{
               </h3>
           </div>
         </a>
-        {/* ) )
-        } */}
+        
     </div>
     </div>
     <div className="py-3 pl-6 text-[30px] text-primary">
