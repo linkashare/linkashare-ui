@@ -246,23 +246,30 @@ const HandleFavourite=(_data:any)=>{
             timeAdded: string | number | boolean;
         }) => {
             return (
-            <div key={data.title}>
+                <div key={data.title}>
                 <a
-                target="_blank"
-                className="py-6 px-8 my-3 flex flex-auto justify-between bg-[#1F1F1F] rounded-2xl"
+                    target="_blank"
+                    className="py-6 px-8 my-3 flex flex-auto justify-between bg-[#1F1F1F] rounded-2xl"
                 >
-                <div>
+                    <div>
                     <div className="text-primary pb-3 text-[25px] font-bold">
-                    {data.title}
+                       <a href={data.fullurl}>
+                       {data.title}
+                       </a>
                     </div>
                     <div className="text-sm">{data.timeAdded}</div>
-                </div>
-    
-                <div onClick={()=> HandleFavourite(data) } className='text-3xl cursor-pointer'>
-                    { data.isFavourite == 'true' ? <AiFillStar />: <AiOutlineStar />}
-                </div>
+                    </div>
+        
+                   <div className="flex items-center gap-3">
+                   <div onClick={()=> HandleFavourite(data) } className='text-3xl cursor-pointer'>
+                        { data.isFavourite == 'true' ? <AiFillStar />: <AiOutlineStar />}
+                    </div>
+                    <div onClick={()=> deleteLink(data.title) } className='text-xl text-red-400 cursor-pointer'>
+                        <FaTrash />
+                    </div>
+                   </div>
                 </a>
-            </div>
+                </div>
             );
         }
         )}
@@ -291,13 +298,14 @@ const HandleFavourite=(_data:any)=>{
         return (
             <div key={data.title}>
             <a
-                // href={data.fullurl}
                 target="_blank"
                 className="py-6 px-8 my-3 flex flex-auto justify-between bg-[#1F1F1F] rounded-2xl"
             >
                 <div>
                 <div className="text-primary pb-3 text-[25px] font-bold">
-                    {data.title}
+                   <a href={data.fullurl}>
+                   {data.title}
+                   </a>
                 </div>
                 <div className="text-sm">{data.timeAdded}</div>
                 </div>
