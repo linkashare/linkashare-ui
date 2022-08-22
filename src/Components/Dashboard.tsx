@@ -4,12 +4,12 @@ import Input from "./Input";
 import { useNavigate } from "react-router-dom";
 import { Post } from "../Utils/request";
 import { clear as clearStorage, get as getStorage } from '../Utils/storage'
-import { FaTrash } from "react-icons/fa";
+import { FaSpinner, FaTrash } from "react-icons/fa";
 
 const Dashboard = () => {
   let navigate = useNavigate();
   let useId = getStorage()
-
+    const [isLoading, setLoading] = useState(true)
   const [userInfo, setUserInfo] = useState<any>({
     dateJoined: "",
     email: "",
@@ -93,6 +93,7 @@ const HandleFavourite=(_data:any)=>{
     //    const _alllinks = data.data
        if(data.data.length > 0){
         setLinks([...data['data']])
+        setLoading(false)
        }
     //    console.log(links)
     } );
@@ -117,10 +118,18 @@ const HandleFavourite=(_data:any)=>{
   }
 
   return (
-    <main className="bg-dark text-textColor min-h-screen">
-    <div className="flex flex-row pt-4 px-[2rem] justify-between">
+    <main className="bg-dark min-h-screen text-white">
+    {
+        isLoading ? (
+            <div className='p-5 text-4xl flex items-center gap-6'>
+                <FaSpinner className='spinning' />
+                <h3 className='text-xl'>Loading...</h3>
+            </div>
+        ): (
+            <>
+           <div className="flex flex-row pt-4 px-[2rem] justify-between">
     <div className="capitalize text-[30px]">
-        welcome, <span className="font-gotham text-primary">{userInfo.username}</span>
+        welcome, <span className="font-gotham text-primary">{userInfo.username || 'User'}</span>
     </div>
     <div>
         <button
@@ -134,7 +143,7 @@ const HandleFavourite=(_data:any)=>{
     <div className="mt-8 px-9 justify-center flex flex-wrap gap-3 md:gap-5">
     <div className="h-[10rem] w-[15rem] bg-[#1F1F1F] rounded-2xl pl-2 pt-2 cursor-pointer">
         <div className="pl-4 text-[25px]">Total Links</div>
-        <div className="pl-4 text-[40px] text-primary">{links.length}</div>
+        <div className="pl-4 text-[40px] text-primary">{links.length || '-'}</div>
     </div>
    
     <div className="h-[10rem] w-[15rem] bg-[#1F1F1F] rounded-2xl pl-2 pt-2 cursor-pointer">
@@ -147,7 +156,7 @@ const HandleFavourite=(_data:any)=>{
               <div className="h-[10rem] w-[15rem] bg-[#1F1F1F] rounded-2xl pl-2 pt-2">
               <div className="pl-4 text-[25px]">Last Added</div>
               <h3 className="pl-4 text-[20px] text-primary">
-              {data.title}
+              {data.title || '-'}
               </h3>
           </div>
         </a>
@@ -337,6 +346,9 @@ const HandleFavourite=(_data:any)=>{
       ):(<h2 className='text-2xl py-4'>No links added yet</h2>)
   }
     </div>
+            </>
+        )
+    }
     </main>
       );
 };
