@@ -241,10 +241,10 @@ const HandleFavourite=(_data:any)=>{
                  title: string;
                  isFavourite:string,
                  fullurl: string | undefined;
-                 timeAdded: string | number | boolean;
+                 timeAdded: string;
              }) => {
                return data.isFavourite == 'true'? (
-                <div key={data.title}>
+                <div key={data.timeAdded}>
                 <a
                     target="_blank"
                     className="py-6 px-8 my-3 flex flex-auto justify-between bg-[#1F1F1F] rounded-2xl"
