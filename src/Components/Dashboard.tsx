@@ -9,7 +9,7 @@ import { FaPlus, FaSpinner, FaTrash } from "react-icons/fa";
 const Dashboard = () => {
   let navigate = useNavigate();
   let useId = getStorage()
-    const [isLoading, setLoading] = useState(false);
+    const [isLoading, setLoading] = useState(true);
     const [favouritesNo , setFav] = useState(0);
   const [userInfo, setUserInfo] = useState<any>({
     dateJoined: "",
@@ -44,6 +44,17 @@ const Dashboard = () => {
     fullurl: "",
     category: "",
   });
+
+
+  const validateModal = () => {
+    let isValid = true
+    if ( link.title == '' || link.fullurl == '') {
+      isValid = false
+      alert('invalid credential')
+    }
+
+    return isValid
+  }
 const HandleFavourite=(_data:any)=>{
     setFavourite({...addFavourite, title:_data['title']})
     let toggle = _data['isFavourite'] =='true' ? 'false' : 'true'
@@ -63,10 +74,12 @@ const HandleFavourite=(_data:any)=>{
 
 
   const handleModal =() =>{
+    if (validateModal()){
     Post('/storelinkinfo.php', link, (data, err) =>{
         if(err) return console.log('an error occured')
         setShowModal(false)
     } );
+    }
 }
     
 
@@ -90,7 +103,12 @@ const HandleFavourite=(_data:any)=>{
 
    Post('/getfavourites.php', userdetails, (data, err) =>{
         if(err) return console.log('an error occured')
-        setFav(data.data.length)
+        if(data.data[0] == 'N/A'){
+            setFav(0)
+        }
+        else{
+            setFav(data.data.length)
+        }
     } );
 
 
@@ -116,25 +134,25 @@ const HandleFavourite=(_data:any)=>{
         ): (
             <>
           
-        <button className='bg-primary  m-12 hover:text-dark hover:bg-white  cursor-pointer w-[100px] h-[100px] flex items-center justify-center text-xl fixed bottom-0 right-0 rounded-full  ease-linear transition-all duration-150' onClick={() => setShowModal(true)}><FaPlus /></button>
+        <button className='bg-primary  m-12 hover:text-dark hover:bg-white  cursor-pointer w-[100px] h-[100px] sm:hidden lg:flex items-center justify-center text-xl fixed bottom-0 right-0 rounded-full  ease-linear transition-all duration-150' onClick={() => setShowModal(true)}><FaPlus /></button>
  
-           <div className="flex flex-row pt-4 px-[2rem] justify-between">
-    <div className="capitalize text-[30px]">
-        welcome, <span className="font-gotham text-primary">{userInfo.username || 'User'}</span>
-    </div>
+        <div className="flex flex-row pt-4 px-[2rem] justify-between">
+        <div className="capitalize text-[30px]">
+            welcome, <span className="font-gotham text-primary">{userInfo.username || 'User'}</span>
+        </div>
     <div>
         <button
         className="bg-primary px-[2rem] py-2 rounded-lg"
         onClick={handleLogout}
         >
-        logout
+        Logout
         </button>
     </div>
     </div>
-    <div className="mt-8 px-9 justify-center flex flex-wrap gap-3 md:gap-5">
+    <div className="mt-8 px-12 justify-between flex flex-wrap gap-3 md:gap-5">
     <div className="h-[10rem] w-[15rem] bg-[#1F1F1F] rounded-2xl pl-2 pt-2 cursor-pointer">
         <div className="pl-4 text-[25px]">Total Links</div>
-        <div className="pl-4 text-[40px] text-primary">{links.length || '-'}</div>
+        <div className="pl-4 text-[40px] text-primary">{links.length || '0'}</div>
     </div>
    
     <div className="h-[10rem] w-[15rem] bg-[#1F1F1F] rounded-2xl pl-2 pt-2 cursor-pointer">
@@ -166,7 +184,7 @@ const HandleFavourite=(_data:any)=>{
     {showModal ? (
     <>
         <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-        <div className="relative  w-[80vw] my-6 mx-auto max-w-3xl">
+        <div className="relative  w-[75vw] my-6 mx-auto max-w-3xl">
             {/*content*/}
             <div className="border-0 rounded-lg  shadow-lg relative flex flex-col bg-dark outline-none focus:outline-none">
             <form
@@ -224,11 +242,12 @@ const HandleFavourite=(_data:any)=>{
     </>
     ) : null}
     
-    <div className="w-full px-8 pb-5">
+    <div className="w-full lg:px-14 sm:px-8 pb-5">
   {
       links.length > 0?(
         <div className="">
         {links
+            .slice(-4)
              .map(
              (data: {
                  title: string;
@@ -261,7 +280,7 @@ const HandleFavourite=(_data:any)=>{
                    </div>
                 </a>
                 </div>
-               ):<span></span>
+               ):<h2 className='text-2xl py-2'>You have 0 Starred Link</h2>
                
              }
              )}
@@ -282,12 +301,12 @@ const HandleFavourite=(_data:any)=>{
     </div>
     </div>
     
-    <div className="w-full px-8 pb-5">
+    <div className="w-full lg:px-14 sm:px-8 pb-5">
   {
       links.length > 0?(
         <div className="">
         {links
-             .slice(-3)
+            
              .map(
              (data: {
                  title: string;
@@ -310,7 +329,7 @@ const HandleFavourite=(_data:any)=>{
                          <div className="text-sm">{data.timeAdded}</div>
                          </div>
              
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-3 lg:pr-14">
                         <div onClick={()=> HandleFavourite(data) } className='text-3xl cursor-pointer'>
                              { data.isFavourite == 'true' ? <AiFillStar />: <AiOutlineStar />}
                          </div>
@@ -327,6 +346,7 @@ const HandleFavourite=(_data:any)=>{
       ):(<h2 className='text-2xl py-4'>No links added yet</h2>)
   }
     </div>
+
             </>
         )
     }

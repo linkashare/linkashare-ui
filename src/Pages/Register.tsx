@@ -22,7 +22,7 @@ const Register = () => {
   let navigate = useNavigate();
   return (
     <main className="min-h-screen flex bg-dark text-white">
-    <AuthBanner>
+    <AuthBanner subHeading='Welcome, Keep your links in sync'>
       <form className="" autoComplete="false" onSubmit={(e)=>{
         e.preventDefault();
         //  validate 
@@ -51,7 +51,7 @@ const Register = () => {
         <Input
           type="text"
           label="Username"
-          placeholder="johnDoe"
+          placeholder="Praisecode"
            onChange={(e:any)=> setState({...state,username:e.target.value})}
           icon={<FaUser />}
         />

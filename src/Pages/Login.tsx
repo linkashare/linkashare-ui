@@ -8,10 +8,11 @@ import { Post } from '../Utils/request';
 import {save as StorageSave} from '../Utils/storage'
 
 const Login = () => {
-    const [state, setState] = useState({
+  const [state, setState] = useState({
     username:'',
     password:''
   })
+
 
   const [progress, setProgress] = useState({
     error:[false, undefined],
@@ -19,7 +20,7 @@ const Login = () => {
   })
   return (
     <main className="min-h-screen flex bg-dark text-white">
-    <AuthBanner heading='Login to Your Account' suggest={(
+    <AuthBanner heading='Login to Your Account' subHeading='Welcome Back, Continue from where you stopped' suggest={(
       <p className='absolute top-0 text-xs p-4'>
       <span className="opacity-80"> Don't Have an Account Yet? ?</span> <Link to='/register' className='text-primary transition-all underline hover:decoration-double'>Sign up</Link>
         </p>
@@ -46,12 +47,13 @@ const Login = () => {
              }
 
          })
+        
       }}>
 
         <Input
           type="username"
           label="Username"
-          placeholder="example@mail.com"
+          placeholder="praisecode"
            onChange={(e:any)=> setState({...state,username:e.target.value})}
           icon={<FaEnvelope />}
         />
