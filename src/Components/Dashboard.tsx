@@ -89,6 +89,7 @@ const HandleFavourite=(_data:any)=>{
    Post('/getuserinfo.php', userdetails, (data, err) =>{
         if(err) return console.log('an error occured')
         setUserInfo({...userInfo, ...data['data']}) 
+        setLoading(false)
     } );
 
    
