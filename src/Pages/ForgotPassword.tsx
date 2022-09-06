@@ -15,8 +15,8 @@ const ForgottenPassword = ()=>{
   const [tokenVal, setTokenVal]=useState('')
 
   const [password, setPassword] = useState({
-    password1:'',
-    password2:''
+    username:'',
+    newPassword:''
   })
 
   // 1 = enter username
@@ -69,13 +69,38 @@ const ForgottenPassword = ()=>{
 
       // step 2
       if(step == 2){
-            setStep(3)
         //compare tokens here
         console.log('Comparing...')
+        if(token == Number(tokenVal)){
+            setStep(3)
+          return setProgress({
+            loading:false,
+            error:[false, undefined]
+          })
+        }
+        // return error here
+        setProgress({
+          loading:false,
+          error:[true, undefined]
+        })
       }
       // step 3
       if(step == 3){
         console.log('Changing Password')
+        Post('/updatepassword.php',password,(res,err)=>{
+          if (err) {
+             return setProgress({
+                  loading:false,
+                  error:[true, undefined]
+                })
+          }
+          
+          if(res.data[0]=='Success'){
+            // return messgae and redirect to login
+            window.location.replace('/login')
+          }
+
+        })
       }
 
         
@@ -94,8 +119,9 @@ const ForgottenPassword = ()=>{
          step == 2 ? (
           <Input
           type="text"
-          label="OTP"
+          label="Token"
           placeholder="- - - -"
+          defaultValue={tokenVal}
            onChange={(e:any)=> setTokenVal(e.target.value)}
           icon={<FaEnvelope />}
         />
@@ -106,16 +132,10 @@ const ForgottenPassword = ()=>{
           type="password"
           label="New Password"
           placeholder="********"
-           onChange={(e:any)=> setPassword({...password, password1:e.target.value})}
+           onChange={(e:any)=> setPassword({username:state.username, newPassword:e.target.value})}
           icon={<FaEnvelope />}
         />
-         <Input
-          type="password"
-          label="Retype Password"
-          placeholder="********"
-           onChange={(e:any)=> setPassword({...password, password2:e.target.value})}
-          icon={<FaEnvelope />}
-        />
+  
            </div>
          ) : <span />
        }
