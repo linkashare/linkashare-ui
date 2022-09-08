@@ -36,9 +36,9 @@ const AuthBanner = ({heading,subHeading,suggest,children}:AuthBannerProps) => {
 
 
     </div>
-       <div className="bg-primary hidden md:block w-1/2 min-h-full">
+       <div className="bg-textColor hidden md:block w-1/2 min-h-full">
          <div className='flex items-center justify-center mt-[30%]'>
-           <h2 className='text-[120px] animate-pulse font-bolder font-gotham -rotate-45 '>Linkashare</h2>
+           <h2 className='text-[120px] animate-pulse font-bolder font-gotham -rotate-45 text-dark'>Linkashare</h2>
          </div>
        </div>
     </Fragment>
