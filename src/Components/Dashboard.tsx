@@ -113,7 +113,7 @@ const HandleFavourite=(_data:any)=>{
     } );
 
 
-  },[links,addFavourite]);
+  },[links,addFavourite,link]);
 
   const deleteLink= (title:string)=>{
     Post('/deletelink.php',{
