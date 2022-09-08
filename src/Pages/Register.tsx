@@ -5,7 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import Input from "../Components/Input";
 import {Post} from '../Utils/request';
 import { save as StorageSave } from '../Utils/storage';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
   const [state, setState] = useState({
@@ -19,7 +20,44 @@ const Register = () => {
     error:[false, undefined],
     loading:false
   })
-  let navigate = useNavigate();
+  const validatePassword = () => {
+      setProgress({
+        loading:false,
+        error:[true, undefined]
+      })
+      let isValid = true
+      if (state.password !== '' && state.confirmpassword !== ''){
+        if(state.password.length < 6){
+          isValid = false
+            toast.error('password is weak', {
+                position: toast.POSITION.TOP_CENTER
+            }); 
+        }
+        else if (state.password !== state.confirmpassword) {
+          isValid = false
+            toast.error('password does not match', {
+                position: toast.POSITION.TOP_CENTER
+            });  
+        }
+
+      }
+      return isValid
+    }
+    const validateForm = () => {
+          setProgress({
+               loading:false,
+               error:[true, undefined]
+             })
+          let isValid = true
+          if(state.username == '' || state.email == '' || state.password == '' || state.confirmpassword == ''){
+            isValid = false
+            toast.error('Please fill out this field', {
+                position: toast.POSITION.TOP_CENTER
+            });   
+           }
+
+          return isValid
+  }
   return (
     <main className="min-h-screen flex bg-dark text-white">
     <AuthBanner subHeading='Welcome, Keep your links in sync'>
@@ -30,6 +68,7 @@ const Register = () => {
             ...progress,
             loading:true
           })
+        if(validatePassword() && validateForm()) {
           Post('/signup.php',state,(res,err)=>{
             setProgress({
                 loading:false,
@@ -43,9 +82,14 @@ const Register = () => {
                   StorageSave(state.username);
                   window.location.assign('/account')
                  }
-    
-
+                 else if(res.data[0] == 'Exists'){
+                  toast.error('Account already exists', {
+                    position: toast.POSITION.TOP_CENTER
+                  });  
+                  return false
+                 }
           })
+        }
       }}>
 
         <Input
@@ -95,6 +139,7 @@ const Register = () => {
           </button>
         </div>
       </form>
+      <ToastContainer />
     </AuthBanner>
   </main>
   );
