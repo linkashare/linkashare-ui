@@ -97,11 +97,11 @@ const ForgottenPassword = ()=>{
           
           if(res.data[0]=='Success'){
             // return messgae and redirect to login
+            window.location.replace('/login')
               return setProgress({
                   loading:false,
                   error:[false, undefined]
                 })
-            window.location.replace('/login')
           }
 
         })
