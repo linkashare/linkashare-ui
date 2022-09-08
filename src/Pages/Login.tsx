@@ -6,6 +6,8 @@ import Input from '../Components/Input';
 import AuthBanner from '../Layout/AuthBanner';
 import { Post } from '../Utils/request';
 import {save as StorageSave} from '../Utils/storage'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
   const [state, setState] = useState({
@@ -13,11 +15,25 @@ const Login = () => {
     password:''
   })
 
-
   const [progress, setProgress] = useState({
     error:[false, undefined],
     loading:false
   })
+  const validateForm = () => {
+          setProgress({
+               loading:false,
+               error:[true, undefined]
+             })
+          let isValid = true
+          if(state.username == '' || state.password == ''){
+            isValid = false
+            console.log('err')
+            toast.error('Please fill out this field', {
+                position: toast.POSITION.TOP_CENTER
+            });    }
+
+          return isValid
+  }
   return (
     <main className="min-h-screen flex bg-dark text-white">
     <AuthBanner heading='Login to Your Account' subHeading='Welcome Back, Continue from where you stopped' suggest={(
@@ -28,10 +44,12 @@ const Login = () => {
       <form className="" onSubmit={(e)=>{
        e.preventDefault();
        //  validate 
+
          setProgress({
            ...progress,
            loading:true
          })
+    if(validateForm()) {
          Post('/login.php',state,(res,err)=>{
            setProgress({
                loading:false,
@@ -40,14 +58,26 @@ const Login = () => {
              
              // data
              console.log(res)
-             if(res.data[0] == 'Success'){
+            if(res.data[0] == 'Success'){
               //  save
               StorageSave(state.username);
               window.location.assign('/account')
-             }
+            }                 
+            else if(res.data[0] == 'Mismatch'){
+              toast.error('password is incorrect', {
+                position: toast.POSITION.TOP_CENTER
+              });  
+              return false
+            }
+            else if(res.data[0] == 'N/A'){
+              toast.error('User does not exist', {
+                position: toast.POSITION.TOP_CENTER
+              });  
+              return false
+            }
 
          })
-        
+  }
       }}>
 
         <Input
@@ -82,6 +112,7 @@ const Login = () => {
           </button>
         </div>
       </form>
+      <ToastContainer />
     </AuthBanner>
   </main>
   )
