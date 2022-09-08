@@ -109,7 +109,7 @@ const HandleFavourite=(_data:any)=>{
     } );
 
 
-  },[links,addFavourite,link]);
+  },[links,addFavourite,link, ""]);
 
   const deleteLink= (title:string)=>{
     Post('/deletelink.php',{
@@ -135,7 +135,7 @@ const HandleFavourite=(_data:any)=>{
             </div>
             <button className='bg-primary  lg:m-12 hover:text-dark hover:bg-white  cursor-pointer lg:w-[100px] lg:h-[100px] w-[50px] h-[50px] flex items-center justify-center text-xl fixed lg:bottom-0 lg:right-0 bottom-2 right-[50%] rounded-full  ease-linear transition-all duration-150' onClick={() => setShowModal(true)}><FaPlus /></button>
         <div className="lg:px-[4rem] px-[1rem]">
-            <div className='hidden lg:flex absolute w-[400px] h-[400px] left-[249px] top-[-200px] bg-[#4246FF] blur-[400px] bg-blend-darken'></div>
+            <div className='flex absolute w-[100px] h-[100px] lg:w-[400px] lg:h-[400px] left-[249px] top-[-50px] bg-[#4246FF] blur-[400px] bg-blend-darken'></div>
 
             <div className="capitalize text-[30px] pt-[80px] font-bold">
                 welcome, <span className="font-gotham text-primarycolor">{userInfo.username || 'User'}</span>
@@ -170,11 +170,11 @@ const HandleFavourite=(_data:any)=>{
                     <div>
                         <a href={links.length > 0? links[links.length-1].fullurl : ''} target="_blank">
                             <div className=" ">
-                            <div className="pl-4 lg:text-[25px] text-left text-xl">Last Added</div>
-                            <h3 className="pl-4 text-[20px] text-primary">
-                            {links.length > 0? links[links.length-1].title : '-'}
-                            </h3>
-                        </div>
+                                <div className="pl-4 lg:text-[25px] text-left text-xl">Last Added</div>
+                                <h3 className="pl-4 text-[20px] text-primary">
+                                {links.length > 0? links[links.length-1].title : '-'}
+                                </h3>
+                            </div>
                         </a>
                     </div>
                 </div>
@@ -264,8 +264,7 @@ const HandleFavourite=(_data:any)=>{
              }) => {
                return data.isFavourite == 'true'? (
                 <div key={data.timeAdded}>
-                <a
-                    target="_blank"
+                <div
                     className="py-6 px-8 my-3 flex flex-auto justify-between bg-[#1F1F1F] rounded-2xl"
                 >
                     <div>
@@ -285,7 +284,7 @@ const HandleFavourite=(_data:any)=>{
                         <FaTrash />
                     </div>
                    </div>
-                </a>
+                </div>
                 </div>
                ):<span></span>
                
@@ -322,15 +321,16 @@ const HandleFavourite=(_data:any)=>{
                  timeAdded: string | number | boolean;
              }) => {
                  return (
-                     <div key={data.title}>
-                     <a
-                         target="_blank"
-                         className="py-6 px-8 my-3 flex flex-auto justify-between bg-[#1F1F1F] rounded-2xl"
+                     <div key={data.title + data.fullurl}>
+                     <div
+                         className="py-6 px-8 my-3 flex flex-auto justify-between bg-secondry rounded-2xl"
                      >
                          <div>
                          <div className="text-primary pb-3 text-[25px] font-bold">
                             <a href={data.fullurl}>
-                            {data.title}
+                                <div>
+                                    {data.title}
+                                </div>
                             </a>
                          </div>
                          <div className="text-sm">{data.timeAdded}</div>
@@ -344,7 +344,7 @@ const HandleFavourite=(_data:any)=>{
                              <FaTrash />
                          </div>
                         </div>
-                     </a>
+                     </div>
                      </div>
                  );
              }
