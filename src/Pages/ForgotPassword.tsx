@@ -98,6 +98,10 @@ const ForgottenPassword = ()=>{
           if(res.data[0]=='Success'){
             // return messgae and redirect to login
             window.location.replace('/login')
+              return setProgress({
+                  loading:false,
+                  error:[false, undefined]
+                })
           }
 
         })
@@ -109,7 +113,7 @@ const ForgottenPassword = ()=>{
        {
          step == 1 ? (
           <Input
-          type="username"
+          type="text"
           label="Username"
           placeholder="praisecode"
            onChange={(e:any)=> setState({username:e.target.value})}
@@ -118,7 +122,7 @@ const ForgottenPassword = ()=>{
          ) : 
          step == 2 ? (
           <Input
-          type="text"
+          type="number"
           label="Token"
           placeholder="- - - -"
           defaultValue={tokenVal}
