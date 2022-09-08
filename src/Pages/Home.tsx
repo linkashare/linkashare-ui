@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Fragment } from 'react'
 import {Helmet} from 'react-helmet';
 import Navbar from "../Components/Navbar"
-import {linklogo, rocket, world, globe} from "../Assets/index"
+import {linklogo, rocket} from "../Assets/index"
 import { FaCoffee } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';

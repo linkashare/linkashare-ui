@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { Post } from "../Utils/request";
 import { clear as clearStorage, get as getStorage } from '../Utils/storage'
 import { FaPlus, FaSpinner, FaTrash } from "react-icons/fa";
+import DashboardNavbar from "./DashboardNavbar";
+import {linkimg, star, add} from '../Assets/index'
 
 const Dashboard = () => {
   let navigate = useNavigate();
@@ -62,12 +64,6 @@ const HandleFavourite=(_data:any)=>{
         if(err) return console.log('an error occured') 
     } );
 }
-  // logout
-  const handleLogout = () => {
-    clearStorage()
-    navigate("/");
-  };
-
   let userdetails = {
     username: useId,
   };
@@ -133,50 +129,59 @@ const HandleFavourite=(_data:any)=>{
                 <h3 className='text-xl'>Loading...</h3>
             </div>
         ): (
-            <>
-          
-        <button className='bg-primary  lg:m-12 hover:text-dark hover:bg-white  cursor-pointer lg:w-[100px] lg:h-[100px] w-[50px] h-[50px] flex items-center justify-center text-xl fixed lg:bottom-0 lg:right-0 bottom-2 right-[50%] rounded-full  ease-linear transition-all duration-150' onClick={() => setShowModal(true)}><FaPlus /></button>
- 
-        <div className="flex flex-row pt-4 px-[2rem] justify-between">
-        <div className="capitalize text-[30px]">
-            welcome, <span className="font-gotham text-primary">{userInfo.username || 'User'}</span>
-        </div>
-    <div>
-        <button
-        className="bg-primary px-[2rem] py-2 rounded-lg"
-        onClick={handleLogout}
-        >
-        Logout
-        </button>
-    </div>
-    </div>
-    <div className="w-full flex mt-8 px-3 lg:px-12 justify-between ">
-    <div className="lg:h-[10rem] lg:w-[15rem] w-max bg-[#1F1F1F] rounded-2xl lg:pl-2 pt-2 cursor-pointer px-5">
-        <div className="lg:pl-4 lg:text-[25px] lg:text-left text-xl text-center ">Total Links</div>
-        <div className="lg:pl-4 text-[40px] lg:text-left text-center text-primary">{links.length || '0'}</div>
-    </div>
-   
-    <div className="lg:h-[10rem] lg:w-[15rem] bg-[#1F1F1F] rounded-2xl px-5 lg:pl-2 pt-2 w-1/3 mx-3">
-        <div className="lg:pl-4 lg:text-[25px] lg:text-left text-xl text-center">Starred Links</div>
-        <div className="lg:pl-4 text-[40px] lg:text-left text-center text-primary">{favouritesNo || '0'}</div>
-    </div>
+        <>
+            <div>
+                <DashboardNavbar/>
+            </div>
+            <button className='bg-primary  lg:m-12 hover:text-dark hover:bg-white  cursor-pointer lg:w-[100px] lg:h-[100px] w-[50px] h-[50px] flex items-center justify-center text-xl fixed lg:bottom-0 lg:right-0 bottom-2 right-[50%] rounded-full  ease-linear transition-all duration-150' onClick={() => setShowModal(true)}><FaPlus /></button>
+        <div className="lg:px-[4rem] px-[1rem]">
+            <div className='hidden lg:flex absolute w-[400px] h-[400px] left-[249px] top-[-200px] bg-[#4246FF] blur-[400px] bg-blend-darken'></div>
 
-    <div className="w-1/3 lg:h-[10rem] lg:w-[15rem] bg-[#1F1F1F] rounded-2xl pl-2 pt-2 px-5">
-        
-        <a href={links.length > 0? links[links.length-1].fullurl : ''} target="_blank">
-              <div className=" ">
-              <div className="pl-4 lg:text-[25px] text-left text-xl">Last Added</div>
-              <h3 className="pl-4 text-[20px] text-primary">
-              {links.length > 0? links[links.length-1].title : '-'}
-              </h3>
-          </div>
-        </a>
-        
-    </div>
-    </div>
-    <div className="py-3 pl-6 lg:text-[30px] text-[20px] text-primary">
-    Keep your links in sync
-    </div>
+            <div className="capitalize text-[30px] pt-[80px] font-bold">
+                welcome, <span className="font-gotham text-primarycolor">{userInfo.username || 'User'}</span>
+            </div>
+
+            <div className="w-full flex mt-8 justify-between ">
+
+                <div className="flex lg:flex-row lg:items-center lg:w-[400px] lg:h-[189px] bg-secondry rounded-2xl lg:pl-[2rem] pt-2 cursor-pointer">
+                    <div>
+                        <img src={linkimg} alt="" />
+                    </div>
+                    <div>
+                        <div className="lg:pl-4 lg:text-[25px] lg:text-left text-xl text-center ">Total Links</div>
+                        <div className="lg:pl-4 text-[40px] lg:text-left text-center text-primary">{links.length || '0'}</div>
+                    </div>
+                </div>
+
+                <div className="flex lg:flex-row lg:items-center lg:w-[400px] lg:h-[189px] bg-secondry rounded-2xl lg:pl-[2rem] pt-2 cursor-pointer">
+                    <div>
+                        <img src={star} alt="" />
+                    </div>
+                    <div>
+                        <div className="lg:pl-4 lg:text-[25px] lg:text-left text-xl text-center">Starred Links</div>
+                        <div className="lg:pl-4 text-[40px] lg:text-left text-center text-primary">{favouritesNo || '0'}</div>
+                    </div>
+                </div>
+
+                <div className="flex lg:flex-row lg:items-center lg:w-[400px] lg:h-[189px] bg-secondry rounded-2xl lg:pl-[2rem] pt-2 cursor-pointer">
+                    <div>
+                        <img src={add} alt="" />
+                    </div>
+                    <div>
+                        <a href={links.length > 0? links[links.length-1].fullurl : ''} target="_blank">
+                            <div className=" ">
+                            <div className="pl-4 lg:text-[25px] text-left text-xl">Last Added</div>
+                            <h3 className="pl-4 text-[20px] text-primary">
+                            {links.length > 0? links[links.length-1].title : '-'}
+                            </h3>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div className="py-3 pl-6 lg:text-[25px] text-[20px] text-primarycolor font-bold">
+            Keep your links in sync
+            </div>
     
     <div className="flex flex-row justify-between text-4xl font-bold px-8 py-3">
     <div>Favourites </div>
@@ -347,6 +352,7 @@ const HandleFavourite=(_data:any)=>{
         </div>
       ):(<h2 className='text-2xl py-4'>No links added yet</h2>)
   }
+    </div>
     </div>
 
             </>
