@@ -69,16 +69,17 @@ const Home = () => {
           </header>
         
 
-        <div className=" flex flex-col-reverse md:flex-row bg-dark justify-around items-center text-textColor  py-[15%]">
+        <div className=" flex flex-col-reverse md:flex-row bg-dark justify-around  items-center text-textColor min-h-screen">
           {/* left side */}
       <div className=''>
+    <img src={rocket} alt="" className="absolute top-[20%] w-[150px]  left-[60%] opacity-10"/>
     <img src={linklogo} alt="" className="max-w-[400px]"/>
       </div>
 
 
     {/* right side  */}
 
-    <div className="px-5">
+    <div className="px-5  md:translate-y-[-20%]">
    <div className=" text-center md:text-left py-3">
       <h1 className="font-bold text-6xl py-4">Linkashare</h1>
      <p className='capitalize text-xl font-bold py-2'>Edit links . <span className='text-primarycolor'>keep links in sync</span> . save links</p> 
