@@ -101,11 +101,10 @@ const Home = () => {
             <div className='hidden lg:flex absolute w-[300px] rounded-2xl h-[300px] left-[1000px] top-[299px] bg-[#42A4FF] blur-[804px] bg-blend-darken'></div>
           </div>
           <ToastContainer />
-          <div className='bg-[#000] w-full px-4 py-6 flex flex-col justify-center items-center text-textColor'>
-            <div className='text-[30px] py-1 font-bold text-primary flex justify-center items-center'>Buy Us A Coffee <span className='pl-2 text-textColor'><FaCoffee /></span></div>
-            <p className='text-sm'>please Support the bright minds behind this</p>
+          <div className='bg-[#000] fixed bottom-0 w-full px-2 lg:px-[6rem] py-2 flex flex-row justify-between items-center text-textColor'>
+            <div className='lg:text-[30px] text-[20px] py-1 font-bold text-primary flex justify-center items-center'>Buy Us A Coffee <span className='lg:pl-2 text-textColor'><FaCoffee /></span></div>
             <div>
-              <button className='py-3 px-8 bg-primary mt-2 rounded-lg text-[#000]'>Support</button>
+              <button className='lg:py-3 lg:px-8 py-2 px-3 bg-primary font-bold mt-2 rounded-lg text-[#000]'>Support</button>
             </div>
           </div>
 
