@@ -16,7 +16,7 @@ const Navbar = () => {
     return ( 
         <div className='w-full fixed'>
             {/* For pc view */}
-            <div className="hidden lg:flex xl:flex sm:hidden md:hidden py-3 px-[2rem] shadow-lg bg-[#000116] text-textColor justify-between">
+            <div className="hidden lg:flex xl:flex sm:hidden md:hidden py-6 px-[2rem] shadow-lg bg-[#000116] text-textColor justify-between">
                 <div>
                     <a href="/" className="flex">
                         <img src={logo} alt="logo image" className='w-[2rem] h-[2rem]' />
@@ -24,7 +24,7 @@ const Navbar = () => {
                     </a>
                 </div>
                 <div className="flex">
-                    <Switch
+                    {/* <Switch
                         checked={enabled}
                         onChange={setEnabled}
                         className={`${
@@ -36,9 +36,9 @@ const Navbar = () => {
                             enabled ? 'translate-x-6' : 'translate-x-1'
                             } inline-block h-4 w-4 transform rounded-full bg-black`}
                         />
-                    </Switch>
-                    <button className='bg-primary mr-4 px-5 rounded-lg' onClick={handleRegister}>Register</button>
-                    <button className='bg-textColor text-dark px-5 rounded-lg' onClick={handleLogin}>Login</button>
+                    </Switch> */}
+                    <button className='bg-primary mr-4 text-sm px-7 rounded-lg' onClick={handleRegister}>Register</button>
+                    <button className='px-3 text-sm' onClick={handleLogin}>Login</button>
                 </div>
             </div>
 
