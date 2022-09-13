@@ -73,14 +73,14 @@ const Home = () => {
           {/* left side */}
       <div className=''>
     <img src={rocket} alt="" className="absolute top-[20%] w-[150px]  left-[60%] opacity-10"/>
-    <img src={linklogo} alt="" className="max-w-[400px]"/>
+    <img src={linklogo} alt="" className="lg:max-w-[400px] lg:flex hidden"/>
       </div>
 
 
     {/* right side  */}
 
     <div className="px-5  md:translate-y-[-20%]">
-   <div className=" text-center md:text-left py-3">
+   <div className=" text-center md:text-left pt-[2rem]">
       <h1 className="font-bold text-6xl py-4">Linkashare</h1>
      <p className='capitalize text-xl font-bold py-2'>Edit links . <span className='text-primarycolor'>keep links in sync</span> . save links</p> 
    </div>
@@ -121,3 +121,4 @@ const Home = () => {
 }
 
 export default Home
+

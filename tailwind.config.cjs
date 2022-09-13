@@ -7,9 +7,10 @@ module.exports = {
       colors:{
         primary:'#535bf2',
         primarycolor:'#35F068',
-        secondry:'rgba(21, 21, 21, 0.5)',
+        secondry:'#192236',
         secondrycolor:'rgba(32, 32, 32, 0.5)',
-        dark:'#02021c',
+        navbarColor:'#161A22',
+        dark:'#141B2C',
         textColor:'#fff'
       },
       screens: {

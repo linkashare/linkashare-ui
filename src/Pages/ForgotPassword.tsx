@@ -57,7 +57,6 @@ const ForgottenPassword = ()=>{
             error:[false, undefined]
           })
           // data
-          console.log(res)
           if(res.data['Token']){
             setStep(2)
             setToken(res.data.Token)
@@ -70,7 +69,6 @@ const ForgottenPassword = ()=>{
       // step 2
       if(step == 2){
         //compare tokens here
-        console.log('Comparing...')
         if(token == Number(tokenVal)){
             setStep(3)
           return setProgress({
@@ -86,7 +84,6 @@ const ForgottenPassword = ()=>{
       }
       // step 3
       if(step == 3){
-        console.log('Changing Password')
         Post('/updatepassword.php',password,(res,err)=>{
           if (err) {
              return setProgress({
