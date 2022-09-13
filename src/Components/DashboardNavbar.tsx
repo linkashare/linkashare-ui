@@ -15,7 +15,7 @@ const DashboardNavbar = () => {
     return ( 
         <div className='w-full fixed'>
             {/* For pc view */}
-            <div className="hidden lg:flex xl:flex sm:hidden md:hidden py-3 px-[2rem] shadow-lg bg-[#000116] text-textColor justify-between">
+            <div className="hidden lg:flex xl:flex sm:hidden md:hidden py-3 px-[2rem] shadow-lg bg-navbarColor text-textColor justify-between">
                 <div>
                     <a href="/" className="flex">
                         <img src={logo} alt="logo image" className='w-[2rem] h-[2rem]' />
@@ -27,7 +27,7 @@ const DashboardNavbar = () => {
                 </div>
             </div>
 
-             <div className="flex lg:hidden xl:hidden sm:flex md:flex py-3 px-[2rem] shadow-md bg-[#000116] text-textColor justify-between">
+             <div className="flex lg:hidden xl:hidden sm:flex md:flex py-3 px-[2rem] shadow-md bg-navbarColor text-textColor justify-between">
                 <div className="flex justify-center items-center">
                     <a href="/" className="flex">
                         <img src={logo} alt="logo image" className='w-[2.5rem] h-[2.5rem]' />

@@ -7,6 +7,8 @@ import { clear as clearStorage, get as getStorage } from '../Utils/storage'
 import { FaPlus, FaSpinner, FaTrash } from "react-icons/fa";
 import DashboardNavbar from "./DashboardNavbar";
 import {linkimg, star, add} from '../Assets/index'
+import { ToastContainer, toast } from 'react-toastify';
+
 
 const Dashboard = () => {
   let navigate = useNavigate();
@@ -41,12 +43,14 @@ const Dashboard = () => {
   const [showModal, setShowModal] = useState(false);
 
   const [state, setState] = useState({
-    username: useId,
-    title: "",
-    fullurl: "",
     category: "",
+    fullurl: "",
+    isFavourite: "",
+    timeAdded: "",
+    title: "",
+    username: ""
   });
-
+  const [dataLength, setDatalength] = useState(0)
 
   const validateModal = () => {
     let isValid = true
@@ -61,7 +65,7 @@ const HandleFavourite=(_data:any)=>{
     setFavourite({...addFavourite, title:_data['title']})
     let toggle = _data['isFavourite'] =='true' ? 'false' : 'true'
     Post('/updatefavourites.php?toggle='+ toggle, addFavourite, (data, err) =>{
-        if(err) return console.log('an error occured') 
+        if(err) return toast.error('an error occured') 
     } );
 }
   let userdetails = {
@@ -72,8 +76,12 @@ const HandleFavourite=(_data:any)=>{
   const handleModal =() =>{
     if (validateModal()){
     Post('/storelinkinfo.php', link, (data, err) =>{
-        if(err) return console.log('an error occured')
+        if(err) return toast.error('an error occured')
         setShowModal(false)
+        if(dataLength === 1){
+            window.location.reload()
+        }
+ 
     } );
     }
 }
@@ -83,15 +91,17 @@ const HandleFavourite=(_data:any)=>{
   useEffect(()=>{
     //   user info
    Post('/getuserinfo.php', userdetails, (data, err) =>{
-        if(err) return console.log('an error occured')
+        if(err) return toast.error('an error occured')
         setUserInfo({...userInfo, ...data['data']}) 
         setLoading(false)
     } );
 
-   
 
    Post('/getalllinks.php', userdetails, (data, err) =>{
-        if(err) return console.log('an error occured') 
+        if(err) return toast.error('an error occured') 
+        let array = data.data.length
+        setDatalength(array)
+        
        if(data.data[0] !='N/A'){
         setLinks([...data['data']])
         setLoading(false)
@@ -99,7 +109,7 @@ const HandleFavourite=(_data:any)=>{
     } );
 
    Post('/getfavourites.php', userdetails, (data, err) =>{
-        if(err) return console.log('an error occured')
+        if(err) return toast.error('an error occured')
         if(data.data[0] == 'N/A'){
             setFav(0)
         }
@@ -109,16 +119,24 @@ const HandleFavourite=(_data:any)=>{
     } );
 
 
-  },[links,addFavourite,link, ""]);
+  },[links,addFavourite,link]);
+
 
   const deleteLink= (title:string)=>{
     Post('/deletelink.php',{
         username:useId,
         title
     }, (data, err)=>{
-        // console.log(data)
+
+        let lastLink = data.data[0]
+        if(lastLink == 'N/A'){
+            links.length = 0
+
+        }
     })
   }
+
+  
 
   return (
     <main className="bg-dark min-h-screen text-white">
@@ -188,7 +206,7 @@ const HandleFavourite=(_data:any)=>{
             {showModal ? (
             <>
                 <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-                <div className="relative  w-[75vw] my-6 mx-auto max-w-3xl">
+                <div className="relative  w-[90vw] my-6 mx-auto max-w-3xl">
                     {/*content*/}
                     <div className="border-0 rounded-lg  shadow-lg relative flex flex-col bg-dark outline-none focus:outline-none">
                     <form
@@ -281,9 +299,9 @@ const HandleFavourite=(_data:any)=>{
                                 <div onClick={()=> HandleFavourite(data) } className='text-3xl cursor-pointer'>
                                         { data.isFavourite == 'true' ? <AiFillStar />: <AiOutlineStar />}
                                     </div>
-                                    <div onClick={()=> deleteLink(data.title) } className='text-xl text-red-400 cursor-pointer'>
+                                    <button onClick={()=> deleteLink(data.title) } className='text-xl text-red-400 cursor-pointer'>
                                         <FaTrash />
-                                    </div>
+                                    </button>
                                 </div>
                                 </div>
                                 </div>
@@ -303,7 +321,7 @@ const HandleFavourite=(_data:any)=>{
 
         <div className="w-full pb-5">
             {
-                links.length > 0?(
+                links.length > 0 ?(
                     <div className="">
                     {links
                         
@@ -353,6 +371,8 @@ const HandleFavourite=(_data:any)=>{
             </>
         )
     }
+    <ToastContainer />
+
     </main>
       );
 };

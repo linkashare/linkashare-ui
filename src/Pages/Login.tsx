@@ -27,7 +27,6 @@ const Login = () => {
           let isValid = true
           if(state.username == '' || state.password == ''){
             isValid = false
-            console.log('err')
             toast.error('Please fill out this field', {
                 position: toast.POSITION.TOP_CENTER
             });    }
@@ -57,7 +56,6 @@ const Login = () => {
              })
              
              // data
-             console.log(res)
             if(res.data[0] == 'Success'){
               //  save
               StorageSave(state.username);

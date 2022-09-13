@@ -76,9 +76,12 @@ const Register = () => {
               })
                
                  // data
-                 console.log(res)
                  if(res.data[0] == 'Success'){
                   //  save
+              setProgress({
+                loading:true,
+                error:[true, undefined]
+              })
                   StorageSave(state.username);
                   window.location.assign('/account')
                  }
@@ -124,7 +127,7 @@ const Register = () => {
         />
 
         <Link
-          className="underline hover:decoration-double text-primary"
+          className="underline hover:decoration-double text-primarycolor"
           to="/forgotten-password"
         >
           Forgotten Password?
