@@ -8,7 +8,7 @@ module.exports = {
         primary:'#535bf2',
         primarycolor:'#35F068',
         secondry:'#192236',
-        secondrycolor:'rgba(32, 32, 32, 0.5)',
+        secondrycolor:' rgba(34, 46, 73, 0.5)',
         navbarColor:'#161A22',
         dark:'#141B2C',
         textColor:'#fff'

@@ -335,7 +335,7 @@ const HandleFavourite=(_data:any)=>{
                             return (
                                 <div key={data.timeAdded}>
                                 <div
-                                    className="py-6 px-8 my-3 flex flex-auto justify-between bg-secondry rounded-2xl"
+                                    className="py-6 px-8 my-3 flex flex-auto justify-between bg-secondrycolor rounded-2xl"
                                 >
                                     <div>
                                     <div className="text-primary pb-3 text-[25px] font-bold">

@@ -38,7 +38,7 @@ const Navbar = () => {
                         />
                     </Switch> */}
                     <button className='bg-primary mr-4 text-sm px-7 rounded-lg' onClick={handleRegister}>Register</button>
-                    <button className='px-3 text-sm' onClick={handleLogin}>Login</button>
+                    <button className='px-3 text-sm border border-primary' onClick={handleLogin}>Login</button>
                 </div>
             </div>
 
