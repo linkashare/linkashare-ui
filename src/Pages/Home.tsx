@@ -70,7 +70,7 @@ const Home = () => {
         
 
         <div className=" flex flex-col-reverse md:flex-row bg-dark justify-around  items-center text-textColor min-h-screen">
-          <div className='hidden lg:flex absolute w-[400px] h-[400px] left-[249px] top-[-200px] bg-[#4246FF] blur-[300px] bg-blend-darken'></div>
+          {/* <div className='hidden lg:flex absolute w-[400px] h-[400px] left-[249px] top-[-200px] bg-[#4246FF] blur-[300px] bg-blend-darken'></div> */}
           {/* left side */}
       <div className=''>
     <img src={rocket} alt="" className="absolute top-[20%] w-[150px]  left-[60%] opacity-10"/>
