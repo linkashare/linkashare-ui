@@ -107,7 +107,7 @@ const Home = () => {
 <ToastContainer />
     </div>
         </div>
-<div className='hidden lg:flex absolute w-[300px] rounded-2xl h-[300px] left-[1200px] top-[480px] bg-[#42A4FF] blur-[600px] bg-blend-darken'></div>
+<div className='hidden lg:flex absolute lg:w-[300px] lg:h-[300px] xl:w-[300px] xl:h-[300px] rounded-2xl left-[1200px] top-[480px] bg-[#42A4FF] blur-[600px] bg-blend-darken'></div>
         <div className='bg-[#000]  w-full px-2  py-4 lg:px-[6rem] flex flex-row justify-between items-center text-textColor'>
 <div className='lg:text-[30px] text-[20px] py-1 px-3 font-bold text-primary flex justify-center items-center'>Buy Us A Coffee <span className='lg:pl-2 text-textColor'><FaCoffee /></span></div>
 
