@@ -70,6 +70,7 @@ const Home = () => {
         
 
         <div className=" flex flex-col-reverse md:flex-row bg-dark justify-around  items-center text-textColor min-h-screen">
+          {/* <div className='hidden lg:flex absolute w-[400px] h-[400px] left-[249px] top-[-200px] bg-[#4246FF] blur-[300px] bg-blend-darken'></div> */}
           {/* left side */}
       <div className=''>
     <img src={rocket} alt="" className="absolute top-[20%] w-[150px]  left-[60%] opacity-10"/>
@@ -81,20 +82,21 @@ const Home = () => {
 
     <div className="px-5  md:translate-y-[-20%]">
    <div className=" text-center md:text-left pt-[2rem]">
-      <h1 className="font-bold text-6xl py-4">Linkashare</h1>
+      <h1 className="font-gotham text-6xl py-4">Linkashare</h1>
      <p className='capitalize text-xl font-bold py-2'>Edit links . <span className='text-primarycolor'>keep links in sync</span> . save links</p> 
    </div>
 
     <div className='w-full flex lg:flex-row md:flex-row pt-4 sm:flex-col lg:justify-start justify-center items-center'>
-    <input type="text"
-          className='lg:w-[50%] h-[3rem] rounded-lg outline-none text-dark pl-4 w-[80%]'
-          required 
-          placeholder="Enter a url"
-          onChange={(e:any)=> setState({...state,url:e.target.value})}
+      <input type="text"
+            className='lg:w-[100%] h-[3rem] rounded-lg outline-none bg-[#3E41DD] text-textColor pl-4 w-[80%]'
+            required 
+            placeholder="Enter a url"
+            onChange={(e:any)=> setState({...state,url:e.target.value})}
 
-    />
-    <button className='bg-primary md:mt-0 lg:mt-0 ml-3 px-4 py-3 font-bold rounded-full sm:mt-3 sm:px-8 z-50' type="submit"  onClick={handleSubmit}>submit</button>
-    
+      />
+      <div className="flex justify-center items-center">
+        <button className='bg-primarycolor lg:mt-0 mt-[1.5rem] text-[#000] lg:relative lg:right-[100px] placeholder:text-[#fff] py-2 px-5 font-bold rounded-lg z-50' type="submit"  onClick={handleSubmit}>submit</button>  
+      </div>
     </div> 
      {showText && (<div className='pt-3 text-center lg:text-left'>Your Shortened Link is: {progress.loading ?(
   <span className="">
@@ -104,11 +106,7 @@ const Home = () => {
 
 <ToastContainer />
     </div>
-
-
-
         </div>
-
         <div className='bg-[#000]  w-full px-2  py-4 lg:px-[6rem] flex flex-row justify-between items-center text-textColor'>
 <div className='lg:text-[30px] text-[20px] py-1 px-3 font-bold text-primary flex justify-center items-center'>Buy Us A Coffee <span className='lg:pl-2 text-textColor'><FaCoffee /></span></div>
 
