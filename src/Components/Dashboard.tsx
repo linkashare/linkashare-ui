@@ -281,31 +281,41 @@ const HandleFavourite=(_data:any)=>{
                                 fullurl: string | undefined;
                                 timeAdded: string;
                             }) => {
-                            return data.isFavourite == 'true'? (
-                                <div key={data.timeAdded}>
-                                <div
-                                    className="py-6 px-8 my-3 flex flex-auto justify-between bg-secondrycolor rounded-2xl"
-                                >
-                                    <div>
+                            return data.isFavourite == "true" ? (
+                              <div key={data.timeAdded}>
+                                <div className="py-6 px-8 my-3 flex flex-auto justify-between bg-secondrycolor rounded-2xl">
+                                  <div>
                                     <div className="text-primary pb-3 text-[25px] font-bold">
-                                    <a href={data.fullurl}>
-                                    {data.title}
-                                    </a>
+                                      <a href={data.fullurl}>{data.title}</a>
                                     </div>
-                                    <div className="text-sm">{data.timeAdded}</div>
+                                    <div className="text-sm">
+                                      {data.timeAdded}
                                     </div>
-                        
-                                <div className="flex items-center gap-3">
-                                <div onClick={()=> HandleFavourite(data) } className='text-3xl cursor-pointer'>
-                                        { data.isFavourite == 'true' ? <AiFillStar />: <AiOutlineStar />}
+                                  </div>
+
+                                  <div className="flex items-center gap-3">
+                                    <div
+                                      onClick={() => HandleFavourite(data)}
+                                      className="text-3xl cursor-pointer"
+                                    >
+                                      {data.isFavourite == "true" ? (
+                                        <AiFillStar />
+                                      ) : (
+                                        <AiOutlineStar />
+                                      )}
                                     </div>
-                                    <button onClick={()=> deleteLink(data.title) } className='text-xl text-red-400 cursor-pointer'>
-                                        <FaTrash />
+                                    <button
+                                      onClick={() => deleteLink(data.title)}
+                                      className="text-xl text-red-400 cursor-pointer"
+                                    >
+                                      <FaTrash />
                                     </button>
+                                  </div>
                                 </div>
-                                </div>
-                                </div>
-                            ):<span></span>
+                              </div>
+                            ) : (
+                              <span key={data.timeAdded}></span>
+                            );
                             
                             }
                             )}
