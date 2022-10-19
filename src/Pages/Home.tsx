@@ -82,7 +82,7 @@ const Home = () => {
 
     <div className="px-5  md:translate-y-[-20%]">
    <div className=" text-center md:text-left pt-[2rem]">
-      <h1 className="font-gotham text-6xl py-4">Linkashare</h1>
+      <h1 className="font-gotham text-5xl py-4">Linkashare</h1>
      <p className='capitalize text-xl font-bold py-2'>Edit links . <span className='text-primarycolor'>keep links in sync</span> . save links</p> 
    </div>
 
