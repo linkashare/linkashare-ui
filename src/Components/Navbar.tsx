@@ -44,7 +44,7 @@ const Navbar = () => {
 
             {/* for smaller devices */}
 
-            <div className="flex lg:hidden xl:hidden sm:flex md:flex py-3 px-[2rem] shadow-md bg-navbarColor text-textColor justify-between">
+            <div className="flex lg:hidden xl:hidden sm:flex md:flex py-1 px-[2rem] shadow-md bg-navbarColor text-textColor justify-between">
                 <div>
                     <a href="/" className="flex">
                         <img src={logo} alt="logo image" className='w-[2.5rem] h-[2.5rem]' />
