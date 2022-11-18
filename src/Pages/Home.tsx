@@ -72,7 +72,7 @@ const Home = () => {
         <div className=" flex flex-col-reverse md:flex-row bg-dark justify-around  items-center text-textColor min-h-screen">
 
       <div className=''>
-    <img src={rocket} alt="" className="absolute top-[20%] w-[150px]  left-[60%] opacity-10"/>
+    <img src={rocket} alt="" className="absolute top-[10%] w-[150px]  left-[30%] opacity-10"/>
     <img src={linklogo} alt="" className="lg:max-w-[400px] lg:flex hidden"/>
       </div>
 
