@@ -8,6 +8,7 @@ import { FaPlus, FaSpinner, FaTrash } from "react-icons/fa";
 import DashboardNavbar from "./DashboardNavbar";
 import {linkimg, star, add} from '../Assets/index'
 import { ToastContainer, toast } from 'react-toastify';
+import {Helmet} from 'react-helmet';
 
 
 const Dashboard = () => {
@@ -139,6 +140,10 @@ const HandleFavourite=(_data:any)=>{
 
   return (
     <main className="bg-dark min-h-screen text-white">
+      <Helmet>
+        <title>Dashboard</title>
+        <meta name='robots' content='index'/>
+      </Helmet>
     {
         isLoading ? (
             <div className='p-5 text-4xl flex items-center gap-6'>

@@ -7,6 +7,7 @@ import {Post} from '../Utils/request';
 import { save as StorageSave } from '../Utils/storage';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {Helmet} from 'react-helmet';
 
 const Register = () => {
   const [state, setState] = useState({
@@ -60,6 +61,10 @@ const Register = () => {
   }
   return (
     <main className="min-h-screen flex bg-dark text-white">
+      <Helmet>
+        <title>Linkashare | register</title>
+        <meta name='robots' content='index'/>
+      </Helmet>
     <AuthBanner subHeading='Welcome, Keep your links in sync'>
       <form className="" autoComplete="false" onSubmit={(e)=>{
         e.preventDefault();
