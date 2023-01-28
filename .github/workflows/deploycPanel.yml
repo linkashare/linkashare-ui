@@ -18,8 +18,8 @@ jobs:
       
     - name: 🔨 Build Project
       run: |
-        npm install
-        npm run build
+        yarn install
+        yarn run build
     
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.3.2
@@ -28,4 +28,4 @@ jobs:
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         dangerous-clean-slate: true
-        local-dir: ./build/
+        local-dir: ./dist/
