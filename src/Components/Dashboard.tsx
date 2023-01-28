@@ -11,7 +11,6 @@ import { ToastContainer, toast } from 'react-toastify';
 
 
 const Dashboard = () => {
-  let navigate = useNavigate();
   let useId = getStorage()
     const [isLoading, setLoading] = useState(true);
     const [favouritesNo , setFav] = useState(0);
