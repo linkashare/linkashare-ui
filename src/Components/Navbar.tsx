@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, Fragment } from "react";
 import { Menu, Switch, Transition } from '@headlessui/react'
 import {logo} from '../Assets/index'
 import './Navbar.css'
 import { GiHamburgerMenu } from "react-icons/gi";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom';
+
 const Navbar = () => {
     const [enabled, setEnabled] = useState(false)
     let navigate = useNavigate();
@@ -13,6 +14,7 @@ const Navbar = () => {
     const handleRegister = () => {
         navigate('/register')
     }
+
     return ( 
         <div className='w-full fixed'>
             {/* For pc view */}
@@ -46,6 +48,7 @@ const Navbar = () => {
             </Menu.Button>
 
             <Transition
+              as={Fragment}
               enter="transition ease-out duration-100"
               enterFrom="transform opacity-0 scale-95"
               enterTo="transform opacity-100 scale-100"
@@ -53,18 +56,18 @@ const Navbar = () => {
               leaveFrom="transform opacity-100 scale-100"
               leaveTo="transform opacity-0 scale-95"
             >
-              <Menu.Items className="z-40  shadow-lg absolute right-0 top-10 w-56 origin-top-right divide-y divide-primary rounded-md bg-[#272727] ring-1 ring-black ring-opacity-5 focus:outline-none">
+              <Menu.Items className="z-40  shadow-lg absolute right-0 top-10 w-56 origin-top-right divide-y divide-primary rounded-md bg-[#272727] ">
                 <Menu.Item>
-                    <a href="/register" className="text-sm group flex w-full items-center rounded-md px-[20px] py-[15px]">Create An Account</a>
+                    <Link to="/register" className="text-sm flex w-full items-center  px-[20px] py-[15px]">Create An Account</Link>
                 </Menu.Item>
                 <Menu.Item>
-                    <a href="/login" className="text-sm group flex w-full items-center rounded-md px-[20px] py-[15px]">Login</a>
+                    <Link to="/login" className="text-sm flex w-full items-center rounded-md px-[20px] py-[15px]">Login</Link>
                 </Menu.Item>
                 <Menu.Item>
-                    <a href="/about" className="text-sm group flex w-full items-center rounded-md px-[20px] py-[15px]">About Us</a>
+                    <Link to="/about" className="text-sm flex w-full items-center rounded-md px-[20px] py-[15px]">About Us</Link>
                 </Menu.Item>
                 <Menu.Item>
-                    <a href="/github" className="text-sm group flex w-full items-center rounded-md px-[20px] py-[15px]">Github</a>
+                    <Link to="/github" className="text-sm flex w-full items-center rounded-md px-[20px] py-[15px]">Github</Link>
                 </Menu.Item>
 
               </Menu.Items>
