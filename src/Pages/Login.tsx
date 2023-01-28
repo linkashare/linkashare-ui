@@ -8,6 +8,7 @@ import { Post } from '../Utils/request';
 import {save as StorageSave} from '../Utils/storage'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {Helmet} from 'react-helmet';
 
 const Login = () => {
   const [state, setState] = useState({
@@ -35,6 +36,10 @@ const Login = () => {
   }
   return (
     <main className="min-h-screen flex bg-dark text-white">
+      <Helmet>
+        <title>Linkashare | login</title>
+        <meta name='robots' content='index'/>
+      </Helmet>
     <AuthBanner heading='Login to Your Account' subHeading='Welcome Back, Continue from where you stopped' suggest={(
       <p className='absolute top-0 text-xs p-4'>
       <span className="opacity-80"> Don't Have an Account Yet? ?</span> <Link to='/register' className='text-primary transition-all underline hover:decoration-double'>Sign up</Link>
