@@ -24,19 +24,7 @@ const Navbar = () => {
                     </a>
                 </div>
                 <div className="flex">
-                    {/* <Switch
-                        checked={enabled}
-                        onChange={setEnabled}
-                        className={`${
-                            enabled ? 'bg-blue-600' : 'bg-textColor'
-                        } relative inline-flex h-6 w-11 items-center rounded-full mt-2 mr-2`}
-                        >
-                        <span
-                            className={`${
-                            enabled ? 'translate-x-6' : 'translate-x-1'
-                            } inline-block h-4 w-4 transform rounded-full bg-black`}
-                        />
-                    </Switch> */}
+
                     <button className='bg-primary mr-4 text-sm px-7 rounded-lg' onClick={handleRegister}>Register</button>
                     <button className='px-3 text-sm border border-primary' onClick={handleLogin}>Login</button>
                 </div>
